@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      BITMAPFILEHEADER、BITMAPINFOHEADER及BMP结构详解 | 鲭鱼香菜的博客 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="shengtao96">
+    
+    
+
+    <meta name="description" content="12345678910111213typedef struct tagBITMAPINFOHEADER&amp;#123;        DWORD      biSize;           //结构体的大小（包括颜色表）        LONG       biWidth;          //图片的宽        LONG       biHeight;         //图片的长">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BITMAPFILEHEADER、BITMAPINFOHEADER及BMP结构详解 | 鲭鱼香菜的博客">
+<meta property="og:url" content="http://shengtao96.github.io/2016/12/18/BITMAPFILEHEADER、BITMAPINFOHEADER及BMP结构详解/index.html">
+<meta property="og:site_name" content="鲭鱼香菜的博客">
+<meta property="og:description" content="12345678910111213typedef struct tagBITMAPINFOHEADER&amp;#123;        DWORD      biSize;           //结构体的大小（包括颜色表）        LONG       biWidth;          //图片的宽        LONG       biHeight;         //图片的长">
+<meta property="og:updated_time" content="2016-12-18T12:36:25.838Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BITMAPFILEHEADER、BITMAPINFOHEADER及BMP结构详解 | 鲭鱼香菜的博客">
+<meta name="twitter:description" content="12345678910111213typedef struct tagBITMAPINFOHEADER&amp;#123;        DWORD      biSize;           //结构体的大小（包括颜色表）        LONG       biWidth;          //图片的宽        LONG       biHeight;         //图片的长">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+<body>
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">鲭鱼香菜的博客</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          亚丝娜是我的
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/shengtao96" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">BITMAPFILEHEADER、BITMAPINFOHEADER及BMP结构详解</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-12-18" class="post-meta__date date">2016-12-18</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/程序猿之路净化一切/">程序猿之路净化一切</a>
+            </font>
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/win32编程/">win32编程</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> tagBITMAPINFOHEADER&#123;</div><div class="line">        DWORD      biSize;           <span class="comment">//结构体的大小（包括颜色表）</span></div><div class="line">        LONG       biWidth;          <span class="comment">//图片的宽</span></div><div class="line">        LONG       biHeight;         <span class="comment">//图片的长</span></div><div class="line">        WORD       biPlanes;         <span class="comment">//目标绘图设备包含的层数，必须设置为1</span></div><div class="line">        WORD       biBitCount;       <span class="comment">//图像的的位数，例如24位，8位等（位数是色彩的深度，比如八位是只用2的八次方表示颜色）</span></div><div class="line">        DWORD      biCompression;</div><div class="line">        DWORD      biSizeImage;      <span class="comment">//图像数据的大小 = biWidth * biHeight * biBitCount</span></div><div class="line">        LONG       biXPelsPerMeter;  <span class="comment">//是现实世界中每米包含的像素数 一般设为3780</span></div><div class="line">        LONG       biYPelsPerMeter;  <span class="comment">//同上</span></div><div class="line">        DWORD      biClrUsed;</div><div class="line">        DWORD      biClrImportant;</div><div class="line">&#125; BITMAPINFOHEADER, FAR *LPBITMAPINFOHEADER, *PBITMAPINFOHEADER;</div></pre></td></tr></table></figure>
+<p>DWORD表示unsigned long<br>LONG表示long<br>WORD表示unsigned short<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> tagBITMAPFILEHEADER &#123;</div><div class="line">        WORD    bfType;              <span class="comment">//图片的类型 必须是BM 填0x4d42即十进制的19778</span></div><div class="line">        DWORD   bfSize;              <span class="comment">//图片的大小 bf0ffBits+长*宽*位数</span></div><div class="line">        WORD    bfReserved1;         <span class="comment">//必须是0</span></div><div class="line">        WORD    bfReserved2;         <span class="comment">//必须是0</span></div><div class="line">        DWORD   bfOffBits;           <span class="comment">//从文件头开始到颜色数据的偏移量 54+sizeof(RGBQUAD)*256</span></div><div class="line">&#125; BITMAPFILEHEADER, FAR *LPBITMAPFILEHEADER, *PBITMAPFILEHEADER;</div></pre></td></tr></table></figure></p>
+<p>BMP文件结构及其存取</p>
+<p>数字图像在外存储器设备中的存储形式是图像文件，图像必须按照某个已知的、公认的数据存储顺序和结构进行存储，才能使不同的程序对图像文件顺利进行打开或存盘操作，实现数据共享。图像数据在文件中的存储顺序和结构称为图像文件格式。目前广为流传的图像文件格式有许多种，常见的格式包括BMP、 GIF、JPEG、TIFF、PSD、DICOM、MPEG等。在各种图像文件格式中，一部分是由某个软硬件厂商提出并被广泛接受和采用的格式，例如 BMP、GIF和PSD格式；另一部分是由各种国际标准组织提出的格式，例如JPEG、TIFF和DICOM，其中JPEG是国际静止图像压缩标准组织提出的格式，TIFF是由部分厂商组织提出的格式，DICOM是医学图像国际标准组织提出的医学图像专用格式。</p>
+<p>BMP文件是Windows操作系统所推荐和支持的图像文件格式，是一种将内存或显示器的图像数据不经过压缩而直接按位存盘的文件格式，所以称为位图（bitmap）文件，因其文件扩展名为BMP，故称为BMP文件格式，简称BMP文件。</p>
+<p>BMP文件总体上由4部分组成，分别是位图文件头、位图信息头、调色板和图像数据</p>
+<p>位图文件头（bitmap-file header）<br>位图信息头（bitmap-information header）<br>彩色表/调色板（color table）<br>位图数据（bitmap-data）</p>
+<p>1、位图文件头（bitmap-file header）</p>
+<p>位图文件头（bitmap-file header）包含了图像类型、图像大小、图像数据存放地址和两个保留未使用的字段。<br>打开WINGDI.h文件，搜索”BITMAPFILEHEADER”就可以定位到BMP文件的位图文件头的数据结构定义。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> tagBITMAPFILEHEADER &#123; </div><div class="line">WORD    bfType;            <span class="comment">//2字节      位图类别，根据不同的操作系统而不同，在windows中这个字段总是‘BM’</span></div><div class="line">DWORD   bfSize;            <span class="comment">//4字节      BMP图像文件的大小</span></div><div class="line">WORD    bfReserved1;       <span class="comment">//2字节      总是0</span></div><div class="line">WORD    bfReserved2;       <span class="comment">//2字节      总是0</span></div><div class="line">DWORD   bfOffBits;         <span class="comment">//4字节      BMP图像数据的地址</span></div><div class="line">&#125; BITMAPFILEHEADER, FAR *LPBITMAPFILEHEADER, *PBITMAPFILEHEADER;</div></pre></td></tr></table></figure></p>
+<p>2、位图信息头（bitmap-information header）</p>
+<p>位图信息头（bitmap-information header）包含了位图信息头的大小、图像的宽高、图像的色深、压缩说明图像数据的大小和其他一些参数。<br>打开WINGDI.h文件，搜索”tagBITMAPINFOHEADER”就可以定位到BMP文件的位图信息头的数据结构定义。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> tagBITMAPINFOHEADER&#123; </div><div class="line">DWORD      biSize;         <span class="comment">//4字节      本结构的大小，根据不同的操作系统而不同，在Windows中，此字段的值总为28h字节=40字节</span></div><div class="line">LONG       biWidth;        <span class="comment">//4字节      BMP图像的宽度，单位像素</span></div><div class="line">LONG       biHeight;       <span class="comment">//4字节     	BMP图像的长度，单位像素</span></div><div class="line">WORD       biPlanes;       <span class="comment">//2字节      总是1</span></div><div class="line">WORD       biBitCount;     <span class="comment">//2字节      BMP图像的色深，即一个像素用多少位表示，常见有1、4、8、16、24和32，分别对应单色、16色、256色、16位高彩色、24位真彩色和32位增强型真彩色</span></div><div class="line">DWORD      biCompression;  <span class="comment">//4字节      压缩方式，0表示不压缩，1表示RLE8压缩，2表示RLE4压缩，3表示每个像素值由指定的掩码决定</span></div><div class="line">DWORD      biSizeImage;    <span class="comment">//4字节      BMP图像数据大小，必须是4的倍数，图像数据大小不是4的倍数时用0填充补足</span></div><div class="line">LONG       biXPelsPerMeter;<span class="comment">//4字节      水平分辨率，单位像素/m</span></div><div class="line">LONG       biYPelsPerMeter;<span class="comment">//4字节      垂直分辨率，单位像素/m</span></div><div class="line">DWORD      biClrUsed;      <span class="comment">//4字节      BMP图像使用的颜色，0表示使用全部颜色，对于256色位图来说，此值为100h=256</span></div><div class="line">DWORD      biClrImportant; <span class="comment">//4字节      重要的颜色数，此值为0时所有颜色都重要，对于使用调色板的BMP图像来说，当显卡不能够显示所有颜色时，此值将辅助驱动程序显示颜色</span></div><div class="line">&#125; BITMAPINFOHEADER, FAR *LPBITMAPINFOHEADER, *PBITMAPINFOHEADER;</div></pre></td></tr></table></figure></p>
+<p>3．彩色表/调色板（color table）</p>
+<p>彩色表/调色板（color table）是单色、16色和256色图像文件所特有的，相对应的调色板大小是2、16和256，调色板以4字节为单位，每4个字节存放一个颜色值，图像的数据是指向调色板的索引。<br>可以将调色板想象成一个数组，每个数组元素的大小为4字节，假设有一256色的BMP图像的调色板数据为：调色板[0]=黑、调色板[1]=白、调色板[2]=红、调色板[3]=蓝…调色板[255]=黄<br>图像数据01 00 02 FF表示调用调色板[1]、调色板[0]、调色板[2]和调色板[255]中的数据来显示图像颜色<br>在早期的计算机中，显卡相对比较落后，不一定能保证显示所有颜色，所以在调色板中的颜色数据应尽可能将图像中主要的颜色按顺序排列在前面，位图信息头的biClrImportant字段指出了有多少种颜色是重要的。<br>每个调色板的大小为4字节，按蓝、绿、红存储一个颜色值。<br>打开WINGDI.h文件，搜索”tagRGBTRIPLE”就可以定位到BMP文件的调色板的数据结构定义。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> tagRGBQUAD &#123; </div><div class="line">BYTE    rgbBlue;           <span class="comment">//1字节      蓝色值</span></div><div class="line">BYTE    rgbGreen;          <span class="comment">//1字节      绿色值</span></div><div class="line">BYTE    rgbRed;            <span class="comment">//1字节      红色值</span></div><div class="line">BYTE    rgbReserved;       <span class="comment">//1字节      保留，总为0</span></div><div class="line">&#125; RGBQUAD;</div></pre></td></tr></table></figure></p>
+<p>4．位图数据（bitmap-data）</p>
+<p>如果图像是单色、16色和256色，则紧跟着调色板的是位图数据，位图数据是指向调色板的索引序号。<br>如果位图是16位、24位和32位色，则图像文件中不保留调色板，即不存在调色板，图像的颜色直接在位图数据中给出。<br>16位图像使用2字节保存颜色值，常见有两种格式：5位红5位绿5位蓝和5位红6位绿5位蓝，即555格式和565格式。555格式只使用了15 位，最后一位保留，设为0。<br>24位图像使用3字节保存颜色值，每一个字节代表一种颜色，按红、绿、蓝排列。<br>32位图像使用4字节保存颜色值，每一个字节代表一种颜色，除了原来的红、绿、蓝，还有Alpha通道，即透明色。<br>如果图像带有调色板，则位图数据可以根据需要选择压缩与不压缩，如果选择压缩，则根据BMP图像是16色或256色，采用RLE4或RLE8压缩算法压缩。（RLE4是压缩16色图像数据的，RLE8是压缩32色图像数据的）</p>
+<p>通过上面对BMP文件存储结构的分析发现，BMP文件的位图文件头和位图信息头存在着大量的重复数据。如果存储大量同一色深的BMP位图，必然会浪 费大量存储空间，所以很多时候游戏编程人员都会去掉BMP文件头和信息头，只保留几个必要的信息和图像数据。很多时候，游戏编程人员只保留图像文件的文件大小、图像宽度、图像高度和图像数据大小信息，甚至有时不需要保留文件大小这个数值，使用图像数据大小数值即可。<br>在分析未知文件存储格式时，如果遇到去掉了文件头的文件时，如上面所说的BMP文件，会给分析未知文件格式带来一定的困难。这时需要使用十六进制编 辑器的文件比较功能，观察两个同类的未知文件格式寻找某些潜在的规律，如果实在观察不出规律的，那只能使用白盒分析方法，对调用此未知文件格式的程序进行反汇编跟踪调试了。</p>
+
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d81ff4fc458aba1722010bdb220f0103";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]--><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>
