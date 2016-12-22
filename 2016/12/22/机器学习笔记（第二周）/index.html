@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      机器学习笔记（第二周） | 鲭鱼香菜的博客 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="shengtao96">
+    
+    
+
+    <meta name="description" content="相关术语partial derivative 偏导数
+1、Multivariate Linear Regression 多变量线性回归适用于多个变量或者多个特征量的情况
+Notation 记号说明1、使用$X$的下标来表示这是第几个特征量，$x_1,x_2,x_3,、、、,x_n$2、n = number of features $n$表示特征量的数目3、$x^{(i)}$ = input(fea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习笔记（第二周） | 鲭鱼香菜的博客">
+<meta property="og:url" content="http://shengtao96.github.io/2016/12/22/机器学习笔记（第二周）/index.html">
+<meta property="og:site_name" content="鲭鱼香菜的博客">
+<meta property="og:description" content="相关术语partial derivative 偏导数
+1、Multivariate Linear Regression 多变量线性回归适用于多个变量或者多个特征量的情况
+Notation 记号说明1、使用$X$的下标来表示这是第几个特征量，$x_1,x_2,x_3,、、、,x_n$2、n = number of features $n$表示特征量的数目3、$x^{(i)}$ = input(fea">
+<meta property="og:image" content="https://raw.githubusercontent.com/shengtao96/picture/master/5.png">
+<meta property="og:updated_time" content="2016-12-22T09:13:29.255Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习笔记（第二周） | 鲭鱼香菜的博客">
+<meta name="twitter:description" content="相关术语partial derivative 偏导数
+1、Multivariate Linear Regression 多变量线性回归适用于多个变量或者多个特征量的情况
+Notation 记号说明1、使用$X$的下标来表示这是第几个特征量，$x_1,x_2,x_3,、、、,x_n$2、n = number of features $n$表示特征量的数目3、$x^{(i)}$ = input(fea">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/shengtao96/picture/master/5.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+<body>
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">鲭鱼香菜的博客</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          亚丝娜是我的
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/shengtao96" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">机器学习笔记（第二周）</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-12-22" class="post-meta__date date">2016-12-22</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/程序猿之路净化一切/">程序猿之路净化一切</a>
+            </font>
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/数学/">数学</a>, <a class="tags-link" href="/tags/机器学习/">机器学习</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h2 id="相关术语"><a href="#相关术语" class="headerlink" title="相关术语"></a>相关术语</h2><p>partial derivative 偏导数</p>
+<h2 id="1、Multivariate-Linear-Regression-多变量线性回归"><a href="#1、Multivariate-Linear-Regression-多变量线性回归" class="headerlink" title="1、Multivariate Linear Regression 多变量线性回归"></a>1、Multivariate Linear Regression 多变量线性回归</h2><p>适用于多个变量或者多个特征量的情况</p>
+<h3 id="Notation-记号说明"><a href="#Notation-记号说明" class="headerlink" title="Notation 记号说明"></a>Notation 记号说明</h3><p>1、使用$X$的下标来表示这是第几个特征量，$x_1,x_2,x_3,、、、,x_n$<br>2、n = number of features $n$表示特征量的数目<br>3、$x^{(i)}$ = input(features) of $i^{th}$ training example 表示第i个训练样本的输入特征值，是一个n维向量，上标其实就是训练集的一个索引<br>4、$x_j^{(i)}$ = value of feature j in $i^{th}$ training example 表示第i个训练样本的第j个特征量。根据图形显然有，这表示的是一个m行n列矩阵的第i行第j列的数（输入特征值形成一个矩阵，预测值形成一个列向量）。</p>
+<h3 id="1-1、假设函数"><a href="#1-1、假设函数" class="headerlink" title="1-1、假设函数"></a>1-1、假设函数</h3><p>之前单变量的假设函数显然已经不适用了，我们可以得到<br>$h_{\theta}(x)={\theta}_0+{\theta}_1x_1+{\theta}_2x_2+、、、+{\theta}_nx_n$</p>
+<h3 id="1-2、简化假设函数"><a href="#1-2、简化假设函数" class="headerlink" title="1-2、简化假设函数"></a>1-2、简化假设函数</h3><p>为了标记的简便，不妨假设$x_0=1$，这样就允许我们对假设函数使用矩阵操作加速运算<br>那么就有对于每一个训练样本，$x_0^{(i)}=1,i\in[1,m]$<br>不妨理解为我们定义了一个额外的第0个特征量<br>所以现在的特征向量$X$可以表示为<br>$X=<br> \left[<br> \begin{matrix}<br>   x_0 \\<br>   x_1 \\<br>   x_2 \\<br>   .   \\<br>   .   \\<br>   x_n<br>  \end{matrix}<br>  \right]<br>  \in R^{n+1}<br>$<br>$X$是一个n+1维向量<br>${\theta}=<br>    \left[<br>    \begin{matrix}<br>    {\theta}_0 \\<br>    {\theta}_1 \\<br>    {\theta}_2 \\<br>    . \\<br>    . \\<br>    {\theta}_n<br>    \end{matrix}<br>    \right]<br>    \in R^{n+1}<br>$<br>同时把假设函数的参数看作一个向量，也是一个n+1维向量<br>那么$h_{\theta}(x)={\theta}_0x_0+{\theta}_1x_1+{\theta}_2x_2+、、、+{\theta}_nx_n\\=\displaystyle\sum_{i=0}^n{\theta}_ix_i\\={\theta}^TX$<br>这就是多特征量情况下的假设形式</p>
+<h3 id="1-3、解决多变量的梯度下降"><a href="#1-3、解决多变量的梯度下降" class="headerlink" title="1-3、解决多变量的梯度下降"></a>1-3、解决多变量的梯度下降</h3><p>对于多元线性回归，不妨不要将参数想成n+1个单独的参数，而是想成一个n+1维的向量（即不妨认为只是一个参数）。<br>代价函数<br>$J({\theta}_0,{\theta}_1,…,{\theta}_n)=\frac{1}{2m}\displaystyle\sum_{i=1}^m{(h_{\theta}(x^{(i)})-y^{(i)})}^2$<br>同样的，不要将$J$函数想成一个关于n+1个自变量的函数，而是一个自变量是一个n+1维向量的函数<br>Gradient descent 梯度下降算法<br>Repeat{<br>   ${\theta}_j:={\theta}_j-{\alpha}\frac{\partial}{\partial{\theta}_j}J({\theta}_0,…,{\theta}_n)$<br>}<br>simultaneously update for every $j=0,…,n$<br>将$J$函数的偏导数求出来，函数就变成下面的式子<br>Repeat{<br>   ${\theta}_j:={\theta}_j-{\alpha}\frac{1}{m}\displaystyle\sum_{i=1}^m(h_{\theta}(x^{(i)})-y^{(i)})x_j^{(i)}$<br>}<br>simultaneously update for every $j=0,…,n$<br>这样就得到了多元线性回归的梯度下降算法，也很显然的可以看出解决多元的梯度下降是解决单元的一般形式，这两种算法其实是一回事。</p>
+<h3 id="1-4、梯度下降运算中的实用技巧"><a href="#1-4、梯度下降运算中的实用技巧" class="headerlink" title="1-4、梯度下降运算中的实用技巧"></a>1-4、梯度下降运算中的实用技巧</h3><h4 id="1-4-1、feature-scaling-特征缩放"><a href="#1-4-1、feature-scaling-特征缩放" class="headerlink" title="1-4-1、feature scaling 特征缩放"></a>1-4-1、feature scaling 特征缩放</h4><p>Make sure features are on a similar scale<br>不妨假设有个多元线性回归问题，如果你能确保所有特征量都处在一个相近的范围，即确保不同特征的取值在相近的范围内，这样梯度下降算法就能更快地收敛。<br>如果特征量的取值范围相差很大（$x_1$的取值范围远远大于$x_2$），那么轮廓图里面（不妨想象成只有两个参数）的椭圆将会又细又长。如果你用这种代价函数来运行梯度下降的话，收敛速度会很慢并且可能来回波动。<br>特征缩放可以有效的解决。分析原因，之所以收敛速度变慢，是因为特征量的取值范围相差很大。那么不妨人为的将特征值的取值范围规划到一个固定的范围，轮廓图近似接近圆，那么收敛速度将会大大加快。<br>Get every feature into approximately $-1\le x_i\le+1$ range<br>更一般的，我们通常将特征的取值约束到-1到+1的范围内。当然-1，+1这两个数并不是很重要，主要是保证所有特征值的取值范围相差不大即可（当然首先得考虑$x_0=1$，那么其他特征量最好都在1的附近取值）。不仅范围大不好，范围太小也不行，比如[-0.0001,+0.0001]相对于[-1,+1]来说也不是可行的范围，那就要考虑特征缩放了。<br>除了将特征量除以最大值以外，我们还可以用到mean normalization均值归一化的方法。<br>Replace $x_i$ with $x_i-{\mu}_i$ to make features have approximately zero mean (do not apply to $x_0=1$)<br>用$x_i-{\mu}_i$ 来替换$x_i$， 通过这样做让特征值具有为0的平均值，这样做可以将所有特征值变化到[-0.5,+0.5]之间（可能会大于，但是基本保持接近）。<br>一般的，特征缩放可以参照下面的公式<br>$x_i\leftarrow\frac{x_i-{\mu}_i}{s_i}$<br>${\mu}_i$ is the average of all the values for feature (i)表示在训练集中特征$x_i$的平均值<br>$s_i$ is the range of values (max - min), or the standard deviation表示该特征值的范围（最大值减去最小值），也可以将$s_i$设置为该特征值的标准差<br>只要将特征转换为相似的范围就都是可以的，特征缩放其实不需要那么精确，只是为了能让梯度下降运行的快一点。</p>
+<h4 id="1-4-2、Learning-Rate-学习率-alpha"><a href="#1-4-2、Learning-Rate-学习率-alpha" class="headerlink" title="1-4-2、Learning Rate 学习率 $\alpha$"></a>1-4-2、Learning Rate 学习率 $\alpha$</h4><p>Making sure gradient descent is working correctly<br>在梯度下降算法运行时，绘出代价函数的值，即绘出代价函数随迭代步数增加的变化曲线<br>$J(\theta)$ should decrease after every iteration<br>如果梯度下降算法运行正常，那么每一步迭代后，代价函数的值都应该下降<br>如果代价函数（近似）保持一个值，没有继续下降，那么可能说明梯度下降基本已经收敛了。曲线可以帮助你判断梯度下降算法是否已经收敛。<br>也可以进行Example automatic convergence test 自动收敛测试：Declare convergence if $J(\theta)$ decreases by less than $10^{-3}$ in one iteration 但是这个阈值是很难确定的<br>时刻查看这条曲线也可以提前警告你，如果梯度下降没有正常运行<br>总结的说的话，如果在曲线中出现了增长，那么梯度下降就没有正常运行，而且一般都是因为学习率太大（排除代码错误），只要减小学习率即可。<br>For sufficiently small $\alpha$, $J(\theta)$ should decrease on every iteration 除非它已经收敛了<br>But if $\alpha$ is too small, gradient descent can be slow to converge</p>
+<h5 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h5><p>if $\alpha$ is too small: slow convergence<br>if $\alpha$ is too large: $J(\theta)$ may not decrease on every iteration; may not converge<br>To choose $\alpha$, try<br>…, 0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 1, …<br><strong>Debugging gradient descent:</strong> Make a plot with number of iterations on the x-axis. Now plot the cost function, J(θ) over the number of iterations of gradient descent. If J(θ) ever increases, then you probably need to decrease α.<br><strong>Automatic convergence test:</strong> Declare convergence if J(θ) decreases by less than E in one iteration, where E is some small value such as $10^{−3}$. However in practice it’s difficult to choose this threshold value.</p>
+<h3 id="1-5、特征选择与Polynomial-Regression-多项式回归"><a href="#1-5、特征选择与Polynomial-Regression-多项式回归" class="headerlink" title="1-5、特征选择与Polynomial Regression 多项式回归"></a>1-5、特征选择与Polynomial Regression 多项式回归</h3><h4 id="1-5-1、特征选择"><a href="#1-5-1、特征选择" class="headerlink" title="1-5-1、特征选择"></a>1-5-1、特征选择</h4><p>当选择了合适的特征之后，可以得到不同的学习算法<br>不妨以房价预测为例，假设你有两个特征，分别是房子临街的宽度和垂直宽度。当然你可以采用多元线性回归模型，将房子临街的宽度和垂直宽度作为两个特征量。不一定非要直接使用给出的数据作为特征，也可以创造出新的特征。根据实际情况，房价应该和房屋占地面积有直接的关系。那么不妨将房子临街宽度乘以垂直宽度得到房屋占地面积，以此作为特征量而使用单元线性回归模型。相比较而言，我认为第二种模型更加符合实际。<br>特征选取取决于你从什么角度去审视一个特地的问题，而不是直接使用问题已知的参数。有时候，通过定义一个新的特征，你会得到一个更好的模型。</p>
+<h4 id="1-5-2、Polynomial-Regression-多项式回归"><a href="#1-5-2、Polynomial-Regression-多项式回归" class="headerlink" title="1-5-2、Polynomial Regression 多项式回归"></a>1-5-2、Polynomial Regression 多项式回归</h4><p>不妨假设有一个回归问题，需要使用三次函数进行拟合，三次函数写作$h_{\theta}(x)={\theta}_0+{\theta}_1x+{\theta}_2x^2+{\theta}_3x^3$。<br>我们还没有学习过非线性回归问题的解决方法，我们可以将这个问题转化为多元线性回归。<br>$h_{\theta}(x)={\theta}_0+{\theta}_1x+{\theta}_2x^2+{\theta}_3x^3\\={\theta}_0+{\theta}_1(size)+{\theta}_2{(size)}^2+{\theta}_3(size)^3\\x_1=(size)\\x_2=(size)^2\\x_3=(size)^3$<br>我们将每个$(size)^i$都作为一个特征量$x_i$，通过之前的预计算和将高次幂化简为特征量，将一个三次函数拟合模型转化为了多元线性回归模型。<br>但是出现了另一个问题，这样选择特征量的话，特征的归一化就是必要的。<br>我认为，多项式回归仅可以使用在部分非线性函数模型中，比如$h_{\theta}(x)={\theta}_0+{\theta}_1x^1+{\theta}_2x^2+…+{\theta}_nx^n+{\theta}_{n+1}\sqrt{x}$。</p>
+<h4 id="Summary-1"><a href="#Summary-1" class="headerlink" title="Summary"></a>Summary</h4><p>在某些回归问题中，二次函数模型是不合适的，因为二次函数模型可能前面拟合的很好，但是之后会出现一个下降的趋势，这与大部分实际情况是不相符的。很显然的，我们考虑使用一个三次函数模型来重新拟合。但是别忘了，加上一个平方根函数的，也是可以的，比如$h_{\theta}(x)={\theta}_0+{\theta}_1(size)+{\theta}_2\sqrt{(size)}$。</p>
+<h2 id="2、Normal-Equation-正规方程"><a href="#2、Normal-Equation-正规方程" class="headerlink" title="2、Normal Equation 正规方程"></a>2、Normal Equation 正规方程</h2><p>对于某些线性回归问题，用正规方程求解参数${\theta}$的最优值更好</p>
+<h3 id="2-1、比较"><a href="#2-1、比较" class="headerlink" title="2-1、比较"></a>2-1、比较</h3><p>梯度下降：为了最小化代价函数$J({\theta})$我们使用的迭代算法，需要经过很多步，通过多次迭代来收敛到全局最小值。<br>正规方程：Method to solve for ${\theta}$ analytically 正规方程提供一种求解$\theta$的解析解法，可以一步求解$\theta$的最优值</p>
+<h3 id="2-2、直观理解"><a href="#2-2、直观理解" class="headerlink" title="2-2、直观理解"></a>2-2、直观理解</h3><p>假设有一个代价函数$J(\theta)=a{\theta}^2+b\theta+c,\theta\in R$<br>为了得到代价函数的最小值，我们一般采用求导的方法，将导数置为0，这样就可以求得使得$J(\theta)$最小的$\theta$值。<br>前面讨论的是$\theta$是实数的情况，接着我们转而讨论它是一个n+1维的参数向量。<br>$J({\theta}_0,{\theta}_1,…,{\theta}_n)=\frac{1}{2m}\displaystyle\sum_{i=1}^m(h_{\theta}(x^{(i)})-y^{(i)})^2,\theta\in R^{n+1}$<br>事实上微积分给出了一种数值方法，对每个参数$\theta$求$J$的偏导数，然后把他们都置为0，并且求出所有的$\theta$值，这样也可以得到答案。<br>$\frac{\partial}{\partial{\theta}_j}J(\theta)=…=0$  for every $j$<br>solve for ${\theta_0},{\theta}_1,…,{\theta}_n$</p>
+<h3 id="2-3、简单计算"><a href="#2-3、简单计算" class="headerlink" title="2-3、简单计算"></a>2-3、简单计算</h3><p>将所有特征数据（要加上$x_0$）放到一个矩阵$X$，是一个$m*(n+1)$矩阵<br>将所有输出值放到一个向量$y$中，是一个m维列向量<br>那么要求的$\theta =(X^TX)^{-1}X^Ty$<br>$x^{(i)}=<br>    \left[<br>    \begin{matrix}<br>    x_0^{(i)} \\<br>    x_1^{(i)} \\<br>    x_2^{(i)} \\<br>    . \\<br>    . \\<br>    . \\<br>    x_n^{(i)} \\<br>    \end{matrix}<br>    \right]<br>    \in R^{n+1}<br>$<br>$X=<br>    \left[<br>    \begin{matrix}<br>    {x^{(1)}}^T \\<br>    {x^{(2)}}^T \\<br>    . \\<br>    . \\<br>    . \\<br>    {x^{(m)}}^T<br>    \end{matrix}<br>    \right]<br>$<br>Octave命令:<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pinv (<span class="name">X</span>'*X)*X'*y</div></pre></td></tr></table></figure></p>
+<p>在Octave中，$X’$表示$X$的转置，pinv()表示求解矩阵的逆矩阵<br>注意：如果你使用的是正规方程法求解代价函数的最小值，那么就不需要使用均值归一化的方法，但是梯度下降算法可能需要。</p>
+<h3 id="2-4、辨析何时使用梯度下降和正规方程"><a href="#2-4、辨析何时使用梯度下降和正规方程" class="headerlink" title="2-4、辨析何时使用梯度下降和正规方程"></a>2-4、辨析何时使用梯度下降和正规方程</h3><h4 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h4><p>缺点一：Need to choose $\alpha$ 需要选择学习率，需要运行多次尝试不同的学习速率，然后找到效果最好的那个<br>缺点二：Need many iterations 需要更多次的迭代，因为一些细节计算可能会很慢<br>优点一：Works well even when $n$ is large 梯度下降算法在有很多特征量的情况下也能运行地相当好</p>
+<h4 id="正规方程"><a href="#正规方程" class="headerlink" title="正规方程"></a>正规方程</h4><p>缺点一：Need to compute $(X^TX)^{-1}$, slow if $n$ is very large 为了求解参数$\theta$需要求解这一项，实现逆矩阵计算所需要的计算量是矩阵维度的三次方，即$o(n^3)$<br>优点一：No need to choose $\alpha$ 不需要选择学习速率<br>优点二：Don’t need to iterate 不需要迭代操作，不需要画出运行曲线来检查收敛性或者其他额外的步骤</p>
+<h4 id="Summary-2"><a href="#Summary-2" class="headerlink" title="Summary"></a>Summary</h4><p><img src="https://raw.githubusercontent.com/shengtao96/picture/master/5.png" alt="无法加载图片"><br>如果$n$很大的话（$n\ge10000$），使用梯度下降算法更加好；但如果$n$很小，那么正规方程算法可以更快地求解</p>
+<h3 id="2-5、Normal-Equation-Noninvertibility-正规方程的不可逆性"><a href="#2-5、Normal-Equation-Noninvertibility-正规方程的不可逆性" class="headerlink" title="2-5、Normal Equation Noninvertibility 正规方程的不可逆性"></a>2-5、Normal Equation Noninvertibility 正规方程的不可逆性</h3><p>问题：如果$(X^TX)$是不可逆的怎么办？即$(X^TX)$没有逆矩阵？即$(X^TX)$是奇异矩阵<br>首先$(X^TX)$不可逆的情况很少发生。<br>在Octave中，有两个函数可以求解逆矩阵，一个是inv()，另一个是pinv()。在计算过程中有所区别，一个是所谓的伪逆，另一个被称为逆。使用pinv()函数一定可以求解$\theta$，即便矩阵$(X^TX)$是不可逆的。inv()引入了先进的数值计算概念。<br>如果矩阵$(X^TX)$是不可逆的，通常有两种最常见的原因。<br><strong>Redundant features(linearly dependent)</strong><br>存在多余的特征，比如以平方英尺来计算房子面积和以平方米来计算房子面积，满足$x_1=3.28x_2$，那么参考线性代数的知识很显然这个矩阵一定是不可逆的，因为存在两个列向量之间是相关的。<br><strong>Too many features</strong> $m\le n$<br>存在大量的特征值，比如尝试在10个训练样本中找到满足101个参数的值<br>删除一些特征是一种方法<br>但是并不是不可能在小数据样本中得到大量参数值，但是不能使用正规方程，我们一般使用正则化的线性代数方法</p>
+<h4 id="Summary-3"><a href="#Summary-3" class="headerlink" title="Summary"></a>Summary</h4><p>如果你真的遇到矩阵$(X^TX)$是不可逆矩阵，首先看看特征值中是否存在一些多余的特征（线性相关的），可以删除重复特征而只保留其中的一个。然后，检查时候有过多的特征，如果特征数量实在是过多，那么删除部分特征或者使用正则化的方法。</p>
+
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d81ff4fc458aba1722010bdb220f0103";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]--><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>
