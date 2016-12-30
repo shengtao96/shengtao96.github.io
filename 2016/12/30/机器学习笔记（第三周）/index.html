@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      机器学习笔记（第三周） | 鲭鱼香菜的博客 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="shengtao96">
+    
+    
+
+    <meta name="description" content="相关术语1、Classification 分类1-1、Example 例子Email：Spam/Not Spam？垃圾邮件分类Online Transactions：Fraudulent（Yes/No）?网上交易是否欺诈Tumor:Malignant/Benign？肿瘤恶性良性$y\in \&amp;#123;0,1\&amp;#125;$0:”Negative Class” 负类1:”Positive Clas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习笔记（第三周） | 鲭鱼香菜的博客">
+<meta property="og:url" content="http://shengtao96.github.io/2016/12/30/机器学习笔记（第三周）/index.html">
+<meta property="og:site_name" content="鲭鱼香菜的博客">
+<meta property="og:description" content="相关术语1、Classification 分类1-1、Example 例子Email：Spam/Not Spam？垃圾邮件分类Online Transactions：Fraudulent（Yes/No）?网上交易是否欺诈Tumor:Malignant/Benign？肿瘤恶性良性$y\in \&amp;#123;0,1\&amp;#125;$0:”Negative Class” 负类1:”Positive Clas">
+<meta property="og:image" content="https://raw.githubusercontent.com/shengtao96/picture/master/6.jpg">
+<meta property="og:updated_time" content="2016-12-30T13:52:24.834Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习笔记（第三周） | 鲭鱼香菜的博客">
+<meta name="twitter:description" content="相关术语1、Classification 分类1-1、Example 例子Email：Spam/Not Spam？垃圾邮件分类Online Transactions：Fraudulent（Yes/No）?网上交易是否欺诈Tumor:Malignant/Benign？肿瘤恶性良性$y\in \&amp;#123;0,1\&amp;#125;$0:”Negative Class” 负类1:”Positive Clas">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/shengtao96/picture/master/6.jpg">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+<body>
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">鲭鱼香菜的博客</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          亚丝娜是我的
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/shengtao96" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">机器学习笔记（第三周）</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-12-30" class="post-meta__date date">2016-12-30</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/程序猿之路净化一切/">程序猿之路净化一切</a>
+            </font>
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/数学/">数学</a>, <a class="tags-link" href="/tags/机器学习/">机器学习</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h2 id="相关术语"><a href="#相关术语" class="headerlink" title="相关术语"></a>相关术语</h2><h2 id="1、Classification-分类"><a href="#1、Classification-分类" class="headerlink" title="1、Classification 分类"></a>1、Classification 分类</h2><h3 id="1-1、Example-例子"><a href="#1-1、Example-例子" class="headerlink" title="1-1、Example 例子"></a>1-1、Example 例子</h3><p>Email：Spam/Not Spam？垃圾邮件分类<br>Online Transactions：Fraudulent（Yes/No）?网上交易是否欺诈<br>Tumor:Malignant/Benign？肿瘤恶性良性<br>$y\in \&#123;0,1\&#125;$<br>0:”Negative Class” 负类<br>1:”Positive Class” 正类<br>哪个是负类，哪个是正类，有时是任意的，这并不是很重要。通常来说，负类0总是表示缺少某样东西；正类1表示存在某样我们寻找的东西。<br><strong>用线性回归的算法来解决分类问题不是一个好主意</strong></p>
+<h3 id="1-2、Binary-Classification-Problem-二元分类问题"><a href="#1-2、Binary-Classification-Problem-二元分类问题" class="headerlink" title="1-2、Binary Classification Problem 二元分类问题"></a>1-2、Binary Classification Problem 二元分类问题</h3><p>只有两类输出值0和1的分类问题</p>
+<h4 id="1-2-1、Hypothesis-Representation-假设表示"><a href="#1-2-1、Hypothesis-Representation-假设表示" class="headerlink" title="1-2-1、Hypothesis Representation 假设表示"></a>1-2-1、Hypothesis Representation 假设表示</h4><p>我们希望得到一个满足$0\le h_&#123;\theta&#125;(x)\le1$的假设函数<br>$h_&#123;\theta&#125;(x)=g(&#123;\theta&#125;^Tx)$<br>$g(z)=\frac&#123;1&#125;&#123;1+e^&#123;-z&#125;&#125;$，这被称为Sigmoid<br><img src="https://raw.githubusercontent.com/shengtao96/picture/master/6.jpg" alt="无法加载图片"><br>function（S型函数）或者Logistic function（逻辑函数）<br>将上面两个函数组合在一起就是我们的假设<br>$h_&#123;\theta&#125;(x)=\frac&#123;1&#125;&#123;1+e^&#123;-&#123;\theta&#125;^Tx&#125;&#125;$</p>
+<h4 id="1-2-2、Interpretation-of-Hypothesis-Output-模型解释"><a href="#1-2-2、Interpretation-of-Hypothesis-Output-模型解释" class="headerlink" title="1-2-2、Interpretation of Hypothesis Output 模型解释"></a>1-2-2、Interpretation of Hypothesis Output 模型解释</h4><p>$h_&#123;\theta&#125;(x)=$ estimated probability that $y$ = 1 on that $x$<br>当我的假设函数输出某个数，我会认为这个数是对于新输入样本$x$,$y=1$的概率的估计值。在概率论中，可以表示为$h_&#123;\theta&#125;(x)=p(y=1|x;\theta)$，“probability that y=1 ,given x, parameterized by $\theta$”。<br>那么，就可以得到一下式子<br>$p(y=0|x;\theta)+p(y=1|x;\theta)=1$<br>$p(y=0|x;\theta)=1-p(y=1|x;\theta)$</p>
+<h4 id="1-2-3、Decision-Boundary-决策边界"><a href="#1-2-3、Decision-Boundary-决策边界" class="headerlink" title="1-2-3、Decision Boundary 决策边界"></a>1-2-3、Decision Boundary 决策边界</h4><p>suppose predict “y=1” if $h_&#123;\theta&#125;(x)\ge 0.5$<br>    $&#123;\theta&#125;^Tx \ge0$<br>        predict “y=0” if $h_&#123;\theta&#125;(x)&lt; 0.5$<br>    $&#123;\theta&#125;^Tx &lt; 0$<br>(如果y=1的概率等于0.5，那么可以选择y=1，也可以选择y=0，这里我们选择了y=1)<br>从逻辑函数的图形中我们可以看出：<br>$g(z)\ge 0.5$,when $z \ge 0$<br>$( h_&#123;\theta&#125;(x)=g(&#123;\theta&#125;^Tx)\ge 0.5$,whenever $&#123;\theta&#125;^Tx\ge 0 )$<br>$z=0,e^0=1\Rightarrow g(z)=\frac&#123;1&#125;&#123;2&#125;$<br>$z\rightarrow\infty,e^&#123;-\infty&#125;\rightarrow0\Rightarrow g(z)=1$<br>$z\rightarrow-\infty,e^&#123;\infty&#125;\rightarrow\infty\Rightarrow g(z)=0$<br>这样我们可以通过直接计算$&#123;\theta&#125;^Tx$的正负性来判断预测选择y=1还是y=0，甚至可以通过直接比较函数值大小来得到y=1或y=0之间的概率高低关系<br>而且在任意数量特征值的图上，通过函数关系得到的图像都可以将图一分为二，一部分全部预测为y=1，另一部分全部预测为y=0。不妨以两个特征值为例，两个特征值正好是一副平面图，那么函数关系是一条直线，这条直线将这幅图划分为两部分。<br>The decision boundary is the line that separates the area where y = 0 and where y = 1. It is created by our hypothesis function.<br>那么函数关系形成的图像就被称为决策边界（非常形象）。决策边界是假设函数的一个属性，即使我们去掉训练集，这条决策边界也不会改变，决定决策边界的不是训练集，而是假设函数的参数。之后我们会训练集计算假设函数的参数，但是一旦参数确定，我们就将完全确定决策边界。</p>
+<h4 id="1-2-4、Non-linear-Decision-Boundaries-非线性决策边界"><a href="#1-2-4、Non-linear-Decision-Boundaries-非线性决策边界" class="headerlink" title="1-2-4、Non-linear Decision Boundaries 非线性决策边界"></a>1-2-4、Non-linear Decision Boundaries 非线性决策边界</h4><p>相当于多项式回归和线性回归的关系，我们也可以尝试去拟合非线性决策边界（使用高阶多项式项），我们可以对逻辑回归使用相同的方法。<br>比如，$h_&#123;\theta&#125;(x)=g(&#123;\theta&#125;_0+&#123;\theta&#125;_1x_1+&#123;\theta&#125;_2x_2+&#123;\theta&#125;_3x_1^2+&#123;\theta&#125;_4x_2^2)$<br>通过增加复杂的多项式特征变量，我们可以得到更复杂的决策边界，而不只是直线</p>
+<h3 id="1-3、Logistic-Regression-逻辑回归"><a href="#1-3、Logistic-Regression-逻辑回归" class="headerlink" title="1-3、Logistic Regression 逻辑回归"></a>1-3、Logistic Regression 逻辑回归</h3><h4 id="1-3-1、Cost-Function-代价函数"><a href="#1-3-1、Cost-Function-代价函数" class="headerlink" title="1-3-1、Cost Function 代价函数"></a>1-3-1、Cost Function 代价函数</h4><p>不妨先定义一个Cost函数<br>$Cost(h_&#123;\theta&#125;(x),y)=\frac&#123;1&#125;&#123;2&#125;(h_&#123;\theta&#125;(x)-y)^2$平方根误差<br>对于这个代价项的理解是这是我期望的我的学习算法如果想要达到这个值所需要付出的代价。这个希望的预测值是$h(x)$，而实际值则是y。<br>因为我们希望使用递推下降的算法去解决逻辑回归的参数拟合问题，所以我们希望代价函数能够是Convex 凸函数（即只有一个局部最小值，否则必须使用模拟退火算法），所以我们不能使用前面设的Cost函数在逻辑回归上。<br>综上所述，我们必须重新定义逻辑回归的代价函数<br>$Cost(h_&#123;\theta&#125;(x),y)=-\log(h_&#123;\theta&#125;(x))$  if $y=1$<br>$Cost(h_&#123;\theta&#125;(x),y)=-\log(1-h_&#123;\theta&#125;(x))$ if $y=0$<br>这个函数显然后很多优秀的性质<br>$Cost=0$ if $y=1,h_&#123;\theta&#125;(x)=1$<br>But as $h_&#123;\theta&#125;(x)\rightarrow 0$<br>$Cost\rightarrow \infty$<br>Captures intuition that if $h_&#123;\theta&#125;(x)=0,$ (predict $P(y=1|x;\theta)=0$),but $y=1$, we’ll penalize learning algorithm by a very large cost 我们会用很大的代价值来惩罚这个学习算法<br>y=0的图像与y=1的图像正好相反，这里不做过多介绍</p>
+<h4 id="1-3-2、Simplified-Cost-Function-化简代价函数"><a href="#1-3-2、Simplified-Cost-Function-化简代价函数" class="headerlink" title="1-3-2、Simplified Cost Function 化简代价函数"></a>1-3-2、Simplified Cost Function 化简代价函数</h4><p>$J(\theta)=\frac&#123;1&#125;&#123;m&#125;\displaystyle\sum_&#123;i=1&#125;^mCost(h_&#123;\theta&#125;(x^&#123;(i)&#125;),y^&#123;(i)&#125;)$<br>$Cost(h_&#123;\theta&#125;(x),y)=-\log(h_&#123;\theta&#125;(x))$ if $y=1$<br>$Cost(h_&#123;\theta&#125;(x),y)=-\log(1-h_&#123;\theta&#125;(x))$ if $y=0$<br>为了方便书写，最好把上面两个式子合并为一个，这样方便写出代价函数并推导出梯度下降。<br>$Cost(h_&#123;\theta&#125;(x),y)=-y\log(1-h_&#123;\theta&#125;(x))-(1-y)\log(1-h_&#123;\theta&#125;(x))$<br>这个式子与上面两个式子是完全等效的<br>这样将单个代价函数代入整体代价函数里面得到<br>$J(\theta)=\frac&#123;1&#125;&#123;m&#125;\displaystyle\sum_&#123;i=1&#125;^mCost(h_&#123;\theta&#125;(x^&#123;(i)&#125;),y^&#123;(i)&#125;)\\=-\frac&#123;1&#125;&#123;m&#125;[\displaystyle\sum_&#123;i=1&#125;^my^&#123;(i)&#125;\log h_&#123;\theta&#125;(x^&#123;(i)&#125;)+(1-y^&#123;(i)&#125;)\log(1-h_&#123;\theta&#125;(x^&#123;(i)&#125;))]$<br>这个式子是从统计学中的极大似然估计得来的，统计学的思路是如何为不同的模型有效地找出不同的参数，同时它是一个凸函数</p>
+<h4 id="1-3-3、Gradient-Descent-梯度下降"><a href="#1-3-3、Gradient-Descent-梯度下降" class="headerlink" title="1-3-3、Gradient Descent 梯度下降"></a>1-3-3、Gradient Descent 梯度下降</h4><p>$J(\theta)=-\frac&#123;1&#125;&#123;m&#125;[\displaystyle\sum_&#123;i=1&#125;^my^&#123;(i)&#125;\log h_&#123;\theta&#125;(x^&#123;(i)&#125;)+(1-y^&#123;(i)&#125;)\log(1-h_&#123;\theta&#125;(x^&#123;(i)&#125;))]$<br>Want min $\theta$ $J(\theta)$<br>Repeat&#123;<br>    $&#123;\theta&#125;_j:=&#123;\theta&#125;_j-\alpha\frac&#123;\partial&#125;&#123;\partial&#123;\theta&#125;_j&#125;J(\theta)$<br>&#125;<br>这个是我们通常使用的梯度下降算法的模版<br>通过代入计算的偏导数，可以得到一个新的式子<br>$&#123;\theta&#125;_j:=&#123;\theta&#125;_j-\alpha\displaystyle\sum_&#123;i=1&#125;^m(h_&#123;\theta&#125;(x^&#123;(i)&#125;)-y^&#123;(i)&#125;)x_j^&#123;(i)&#125;$<br>Alogorithm looks identical to linear regression!<br>这个式子正是我们用来做线性回归梯度下降，两个式子是完全一模一样的。但是由于假设定义发生了变化，所以逻辑函数的梯度下降跟线性回归的梯度下降实际上是两个完全不同的东西。<br>监控梯度下降算法以确保其收敛，这在逻辑回归中也是适用的。<br>当然需要使公式向量化来简化运算。特征缩放也适用于逻辑回归，如果你的特征范围差距很大的话，使用特征缩放也可以使得收敛速度加快。<br>向量化实现：<br>$h=g(&#123;\theta&#125;^Tx)$<br>$J(\theta)=\frac&#123;1&#125;&#123;m&#125;(-y^T\log(h)-(1-y)^T\log(1-h))$<br>$\theta:=\theta-\frac&#123;\alpha&#125;&#123;m&#125;X^T(g(&#123;\theta&#125;^Tx)-y)$</p>
+<h3 id="1-4、Advanced-Optimization-高级优化"><a href="#1-4、Advanced-Optimization-高级优化" class="headerlink" title="1-4、Advanced Optimization 高级优化"></a>1-4、Advanced Optimization 高级优化</h3><p>Optimization algorithm：<br>-Gradient descent<br>-Conjugate gradient<br>-BFGS<br>-L-BFGS<br>除了梯度下降算法，还有其他方法求解使得代价函数最小的参数$\theta$，比如BFGS 共轭梯度（变尺度法）和L-BFGS 限制尺度法<br>这里只做最基本的介绍，简单说说他们的优缺点：下面三种算法有许多优点，（1）不需要手动选择学习率$\alpha$，他们有一种叫line search线性搜索的算法，它可以自动尝试不同的学习速率$\alpha$并且选择一个 （2）收敛速度远远快于梯度下降算法；缺点：他们比梯度下降算法复杂多了</p>
+<h4 id="调用高级优化函数"><a href="#调用高级优化函数" class="headerlink" title="调用高级优化函数"></a>调用高级优化函数</h4><p>options = optimset(‘GradObj’,’on’,’MaxIter’,’100’);<br>initialTheta = zeros(2,1);<br>[opTheta, functionVal, exitFlag]…<br>= fminunc(@costFunction, initialTheta, options);<br>fminunc是Octave里无约束最小化函数<br>options是作为一个数据结构可以存储你想要的options<br>‘GradObj’、‘on’表示设置梯度目标参数为打开，这意味着你现在确实要给这个算法提供一个梯度<br>‘100’、‘MaxIter’表示迭代次数为100次<br>@表示指向我们刚刚定义的costfunction函数的指针<br>如果我调用这个函数，那么软件就会使用众多高级优化算法中的一个。当然你也可以把它当作梯度下降算法，只不过它可以自动选择$\alpha$，而不需要自己选择。</p>
+<h3 id="1-5、Multiclass-classification-多类别分类问题"><a href="#1-5、Multiclass-classification-多类别分类问题" class="headerlink" title="1-5、Multiclass classification 多类别分类问题"></a>1-5、Multiclass classification 多类别分类问题</h3><h4 id="1-5-1、Examples-例子"><a href="#1-5-1、Examples-例子" class="headerlink" title="1-5-1、Examples 例子"></a>1-5-1、Examples 例子</h4><p>Email foldering/tagging: Work,Friends,Family,Hobby<br>Medical diagrams:Not ill, Cold,Flu<br>Weather:Sunny,Cloudy,Rain,Snow</p>
+<h4 id="1-5-2、one-vs-all-“一对多”"><a href="#1-5-2、one-vs-all-“一对多”" class="headerlink" title="1-5-2、one-vs-all “一对多”"></a>1-5-2、one-vs-all “一对多”</h4><p>不妨设我们现在有y=1,y=2,y=3这三类输出值的一个多类别分类问题。我们需要做的就是分成三个二元分类问题<br>这样就可以得到：<br>$h_&#123;\theta&#125;^&#123;(i)&#125;(x)=P(y=i|x;\theta)$    $(i=1,2,3)$<br>这样分别计算每一个分类器的概率即可是多少<br>Train a logistic regression classifier $h_&#123;\theta&#125;^&#123;(i)&#125;(x)$ for each class $i$ to predict the probability that $y=i$<br>On a new input $x$, to make a prediction, pick the class $i$ that maximizes $h_&#123;\theta&#125;^&#123;(i)&#125;(x)$</p>
+<h2 id="2、The-Problem-of-Overfitting-过度拟合"><a href="#2、The-Problem-of-Overfitting-过度拟合" class="headerlink" title="2、The Problem of Overfitting 过度拟合"></a>2、The Problem of Overfitting 过度拟合</h2><h3 id="2-1、Undrefiting-欠拟合"><a href="#2-1、Undrefiting-欠拟合" class="headerlink" title="2-1、Undrefiting 欠拟合"></a>2-1、Undrefiting 欠拟合</h3><p>Underfitting, or high bias, is when the form of our hypothesis function h maps poorly to the trend of the data. It is usually caused by a function that is too simple or uses too few features.<br>从图形上看，拟合曲线不能很好地拟合训练数据，那么我们把这个问题叫做underfiting 欠拟合，也可以叫做High bias 高偏差。这两种说法大致相同，意思是假设函数没有很好的拟合训练数据。<br>如果拟合一条直线到训练数据，但是算法有一个很强的偏见或者说一个很大的偏差，因为该算法认为房子的价格与面积仅仅线性相关，尽管与该数据的事实相反，尽管相反的事实被事前定义为偏差，它还是接近于拟合一条直线，而此法最终导致拟合数据的效果很差<br>上面是视频的原话，说句实话翻译的非常烂，我这里用自己的话说说我的理解。在预测房价的问题上，如果勉强去使用直线去拟合训练数据，也是可以成功的，但是实际情况下房价与面积很显然不是呈线性关系那么简单。那么拟合出来的结果的可行度就是值得怀疑的，因为在拟合数据之前，你已经规定了（确信）特征值与输出值是线性相关的，最后预测结果出现偏差也是很正常的。</p>
+<h3 id="2-2、过度拟合"><a href="#2-2、过度拟合" class="headerlink" title="2-2、过度拟合"></a>2-2、过度拟合</h3><p>overfitting, or high variance, is caused by a hypothesis function that fits the available data but does not generalize well to predict new data. It is usually caused by a complicated function that creates a lot of unnecessary curves and angles unrelated to the data.<br>所用的假设函数能够几乎很好的拟合所有训练数据，但是这个曲线很显然与事实情况完全不符，那么我们称这个问题为过度拟合或者variance 高方差。<br>如果我们拟合一个高阶多项式，而且这个函数可以很好的拟合训练集，能拟合几乎所有的训练数据，这就面临着可能函数太过庞大、变量太多的问题，同时我们没有足够的数据去约束这个变量过多的模型，那么这就是过度拟合。<br>简单的理解一下，就是我们找到一个变量过多的函数模型，可以很好的拟合所提供的训练集，但是因为训练集的有限，可能会导致在训练集范围这个函数是合理的、有效的，但是在训练集之外的范围可能会导致与事实不符的输出值。<br>If we have too many features, the learned hypothesis may fit the trainning set very well($J(\theta)=\frac&#123;1&#125;&#123;2m&#125;\displaystyle\sum_&#123;i=1&#125;^m(h_&#123;\theta&#125;(x^&#123;(i)&#125;)-y^&#123;(i)&#125;)^2\approx0$), but fail to generalize to new examples(predict prices on new examples).<br>如果假设函数千方百计的拟合于训练数据，这样导致它无法泛化到新的数据样本中，以至于无法预测新的样本价格。</p>
+<h4 id="generalize-泛化"><a href="#generalize-泛化" class="headerlink" title="generalize 泛化"></a>generalize 泛化</h4><p>泛化指的是一个假设模型能够应用到新样本的能力</p>
+<h3 id="2-3、Just-Right-刚好合适"><a href="#2-3、Just-Right-刚好合适" class="headerlink" title="2-3、Just Right 刚好合适"></a>2-3、Just Right 刚好合适</h3><p>在欠拟合和过度拟合之间，那么就肯定存在刚好合适的情况。</p>
+<h3 id="2-4、Addressing-overfitting-解决多度拟合"><a href="#2-4、Addressing-overfitting-解决多度拟合" class="headerlink" title="2-4、Addressing overfitting 解决多度拟合"></a>2-4、Addressing overfitting 解决多度拟合</h3><p>当我们使用一维或者两维数据的时，我们可以通过绘制假设函数模型的图像来研究问题所在，在选择合适的多项式来拟合数据。因此绘制假设函数模型曲线，可以作为决定高阶多项式的一种方法，但是这并不是总是有用的。<br>当我们有许多特征量的时候，多维度使得绘图也变得非常困难，并且使得其难以可视化。因此并不能通过这种方法来决定保留那些特征变量。</p>
+<h4 id="2-4-1、Reduce-number-of-featrues-减少特征变量的数量"><a href="#2-4-1、Reduce-number-of-featrues-减少特征变量的数量" class="headerlink" title="2-4-1、Reduce number of featrues 减少特征变量的数量"></a>2-4-1、Reduce number of featrues 减少特征变量的数量</h4><p>-Manually select which features to keep 人工检查变量的条目并以此决定哪些变量更为重要，然后决定保留哪些变量，哪些应该舍弃<br>-Model selection algorithm 模型选择算法（课程之后会提到）<br>这种算法是为了自动选择采用哪些变量，自动舍弃不需要的变量<br>优点：这种做法是非常有效的，并且可以减少过度拟合的发生<br>缺点：舍弃一部分特征变量，你也舍弃了问题中的一些信息。比如，也许所有的特征变量对于预测房价都是有用的，我们实际上并不想舍弃一些信息或者舍弃这些特征变量</p>
+<h4 id="2-4-2、Regularization-正则化"><a href="#2-4-2、Regularization-正则化" class="headerlink" title="2-4-2、Regularization 正则化"></a>2-4-2、Regularization 正则化</h4><p>-Keep all the features, but reduce magnitude/values of parameters $&#123;\theta&#125;_j$<br>保留所有特征变量，但是减小数量级或者参数数值的大小$&#123;\theta&#125;_j$<br>-Regularization works well when we have a lot of slightly useful features.<br>当我们有很多特征变量的时候，其中每一个变量都能对预测产生一点影响，所以保留所有特征值是很有必要的。</p>
+<h3 id="2-5、Cost-Function-代价函数"><a href="#2-5、Cost-Function-代价函数" class="headerlink" title="2-5、Cost Function 代价函数"></a>2-5、Cost Function 代价函数</h3><p>对原来的代价函数添加一些对$&#123;\theta&#125;_3,&#123;\theta&#125;_4$的惩罚项<br>比如最小化$\frac&#123;1&#125;&#123;2m&#125;\displaystyle\sum_&#123;i=1&#125;^m(h_&#123;\theta&#125;(x^&#123;(i)&#125;)-y^&#123;(i)&#125;)^2+1000&#123;&#123;\theta&#125;_3&#125;^2+1000&#123;&#123;\theta&#125;_4&#125;^2$，此时如果我们需要最小化这个新的代价函数，我们要让$&#123;\theta&#125;_3$和$&#123;\theta&#125;_4$尽可能的小，那么最后$&#123;\theta&#125;_3,&#123;\theta&#125;_4$应该接近于0，就像我们在假设函数中忽略了这两个值一样。<br>在这个代价函数中，我们有惩罚这两个大的参数值的效果。<br>这里给出正则化的思路，</p>
+<h3 id="2-6、Regularization-正则化"><a href="#2-6、Regularization-正则化" class="headerlink" title="2-6、Regularization 正则化"></a>2-6、Regularization 正则化</h3><p>Small values of parameters $&#123;\theta&#125;_0,&#123;\theta&#125;_1,…,&#123;\theta&#125;_n$<br>-“Simpler” hypothesis<br>-Less prone to overfitting<br>如果我们的参数值比较小（不妨把这个参数值看做0，不妨把这一项看成没有），那么往往我们会得到一个形式更简单的假设。<br>也对应于越光滑、越简单的函数，因此也就越不易发生过度拟合的情况<br>当特征变量过多的时候，我们是很难提前选出那些关联度更小的特征的，如何缩小参数的数目是很难的。<br>不妨缩小所有的参数值<br>$J(\theta)=\frac&#123;1&#125;&#123;2m&#125;[\displaystyle\sum_&#123;i=1&#125;^m(h_&#123;\theta&#125;(x^&#123;(i)&#125;)-y^&#123;(i)&#125;)^2+\lambda \displaystyle\sum_&#123;i=1&#125;^n&#123;\theta&#125;_i^2]$<br>通过添加这个额外的正则化项，我们收缩了每个参数。<br>这里有一个注意点，我们没有去惩罚$&#123;\theta&#125;_0$，因为$&#123;\theta&#125;_0$的值是最大的，这是一个约定。在实践中，这样只会有非常小的差异。<br>我们现在的优化目标是$min J(\theta)$，最小化新的代价函数。这里的$\lambda$被称为Regularization Parameters 正规化参数，$\lambda$要做的就是达到在两个目标之间的平衡关系，一个目标就是我们想要使假设更好地拟合训练数据，能够很好的适应训练集；第二个目标是我们想要保持参数值较小，通过正则化目标函数。<br>总结的说，$\lambda$的目标就是平衡拟合训练集的目的和保持参数值较小的目的，从而保持假设的形式相对简单，来避免过度的拟合。<br>如果$\lambda$过大的话，我们将会非常大地惩罚所有参数，那么所有参数都会接近于0。这样的话，我们相当于用一条水平直线去拟合数据，这样很显然就是欠拟合的情况。也可以这么说，这种假设有过于强烈的“偏见”或者过高的偏差。<br>为了使正则化运行良好，我们应该去选择一个不错的正则化参数$\lambda$</p>
+<h3 id="2-7、Regularized-Linear-Regression-正则化线性回归"><a href="#2-7、Regularized-Linear-Regression-正则化线性回归" class="headerlink" title="2-7、Regularized Linear Regression 正则化线性回归"></a>2-7、Regularized Linear Regression 正则化线性回归</h3><p>在这一节，我们将递推下降和正规方程推广到正则化线性回归中。在代价函数中添加了新的一项后，我们解决线性回归的方法也需要修改推广。</p>
+<h4 id="2-7-1、递推下降推广"><a href="#2-7-1、递推下降推广" class="headerlink" title="2-7-1、递推下降推广"></a>2-7-1、递推下降推广</h4><p>在正则化中，因为约定我们不会惩罚$&#123;\theta&#125;_0$，所以在递推下降算法中需要将$n=0$的情况列出来并且保持不变。<br>Repeat｛<br>$&#123;\theta&#125;_0:=&#123;\theta&#125;_0-\alpha\frac&#123;1&#125;&#123;m&#125;\displaystyle\sum_&#123;i=1&#125;^m(h_&#123;\theta&#125;(x^&#123;(i)&#125;)-y^&#123;(i)&#125;)x_0^&#123;(i)&#125;$<br>$&#123;\theta&#125;_j:=&#123;\theta&#125;_j-\alpha[\frac&#123;1&#125;&#123;m&#125;\displaystyle\sum_&#123;i=1&#125;^m(h_&#123;\theta&#125;(x^&#123;(i)&#125;)-y^&#123;(i)&#125;)x_j^&#123;(i)&#125;+\frac&#123;\lambda&#125;&#123;m&#125;&#123;\theta&#125;_j]$<br>｝<br>上面这个新的递推下降的公式就可以用于最小化正则化代价函数<br>仔细观察这个式子，我们可以很化简第二个式子<br>$&#123;\theta&#125;_j:=&#123;\theta&#125;_j(1-\alpha\frac&#123;\lambda&#125;&#123;m&#125;)-\alpha\frac&#123;1&#125;&#123;m&#125;\displaystyle\sum_&#123;i=1&#125;^m(h_&#123;\theta&#125;(x^&#123;(i)&#125;)-y^&#123;(i)&#125;)x_j^&#123;(i)&#125;$<br>观察$&#123;\theta&#125;_j$的参数项$(1-\alpha\frac&#123;\lambda&#125;&#123;m&#125;)$，很显然可以得到下面这个不等式<br>$1-\alpha\frac&#123;\lambda&#125;&#123;m&#125;&lt; 1$<br>所以我们通常可以知道$(1-\alpha\frac&#123;\lambda&#125;&#123;m&#125;)$是一个比1小一点点的值，不妨将它想象成0.99的数。所以对更新公式可以理解为$&#123;\theta&#125;_j$被替换为$&#123;\theta&#125;_j$的0.99倍，之后的第二项与原来的更新一样。</p>
+<h4 id="2-7-2、正规方程推广"><a href="#2-7-2、正规方程推广" class="headerlink" title="2-7-2、正规方程推广"></a>2-7-2、正规方程推广</h4><p>同样正规方程的公式也需要改变<br>$\theta=(X^TX+\lambda\left[<br>\begin&#123;matrix&#125;<br>0&amp; 0&amp; 0&amp; …&amp; 0\\<br>0&amp; 1&amp; 0&amp; …&amp; 0\\<br>0&amp; 0&amp; 1&amp; …&amp; 0\\<br>.&amp; .&amp; .&amp; …&amp; .\\<br>.&amp; .&amp; .&amp; …&amp; .\\<br>0&amp; 0&amp; 0&amp; …&amp; 1<br>\end&#123;matrix&#125;<br>\right])^&#123;-1&#125;X^Ty$<br>公式中的矩阵显然应该是$(n+1)*(n+1)$的矩阵</p>
+<h5 id="不可逆性"><a href="#不可逆性" class="headerlink" title="不可逆性"></a>不可逆性</h5><p>这里简单的说说不可逆性的问题<br>假如 $m\le n$<br>$\theta =(X^TX)^&#123;-1&#125;X^Ty$肯定是一个不可逆矩阵<br>幸运的是，只要正则化参数是严格大于0的话，可以证明$\theta=(X^TX+\lambda\left[<br>\begin&#123;matrix&#125;<br>0&amp; 0&amp; 0&amp; …&amp; 0\\<br>0&amp; 1&amp; 0&amp; …&amp; 0\\<br>0&amp; 0&amp; 1&amp; …&amp; 0\\<br>.&amp; .&amp; .&amp; …&amp; .\\<br>.&amp; .&amp; .&amp; …&amp; .\\<br>0&amp; 0&amp; 0&amp; …&amp; 1<br>\end&#123;matrix&#125;<br>\right])^&#123;-1&#125;X^Ty$不是奇异的，该矩阵一定是可逆的。<br>也就是说正则化还可以将一些优化前不可逆的问题转化为可逆的问题。</p>
+<h3 id="2-8、Regularized-Logistic-Regression-正则化逻辑回归"><a href="#2-8、Regularized-Logistic-Regression-正则化逻辑回归" class="headerlink" title="2-8、Regularized Logistic Regression 正则化逻辑回归"></a>2-8、Regularized Logistic Regression 正则化逻辑回归</h3><p>同样，我们需要把递归下降和高级优化运用到正则化逻辑回归</p>
+<h4 id="2-8-1、递推下降推广"><a href="#2-8-1、递推下降推广" class="headerlink" title="2-8-1、递推下降推广"></a>2-8-1、递推下降推广</h4><p>我们需要修改代价函数<br>$J(\theta)=-[\frac&#123;1&#125;&#123;m&#125;\displaystyle\sum_&#123;i=1&#125;^my^&#123;(i)&#125;\log h_&#123;\theta&#125;(x^&#123;(i)&#125;)+(1-y^&#123;(i)&#125;)\log (1-h_&#123;\theta&#125;(x^&#123;(i)&#125;))]+\frac&#123;\lambda&#125;&#123;2m&#125;\displaystyle\sum_&#123;j=1&#125;^n&#123;\theta&#125;_j^2$<br>那么对于更新公式，我们也需要做出相应的变化<br>Repeat｛<br>$&#123;\theta&#125;_0:=&#123;\theta&#125;_0-\alpha\frac&#123;1&#125;&#123;m&#125;\displaystyle\sum_&#123;i=1&#125;^m(h_&#123;\theta&#125;(x^&#123;(i)&#125;)-y^&#123;(i)&#125;)x_0^&#123;(i)&#125;$<br>$&#123;\theta&#125;_j:=&#123;\theta&#125;_j-\alpha[\frac&#123;1&#125;&#123;m&#125;\displaystyle\sum_&#123;i=1&#125;^m(h_&#123;\theta&#125;(x^&#123;(i)&#125;)-y^&#123;(i)&#125;)x_j^&#123;(i)&#125;+\frac&#123;\lambda&#125;&#123;m&#125;&#123;\theta&#125;_j]$<br>｝<br>很显然，修改之后逻辑回归的更新公式与线性回归的一模一样。但是这里还是要小心，这两个算法完全不是一样的，因为假设函数是不一样的。</p>
+<h4 id="2-8-2、高级优化推广"><a href="#2-8-2、高级优化推广" class="headerlink" title="2-8-2、高级优化推广"></a>2-8-2、高级优化推广</h4><figure class="highlight delphi"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> [<span class="title">jVal</span>, <span class="title">gradient</span>] = <span class="title">costFunction</span><span class="params">(theta)</span></span></div><div class="line"><span class="title">jVal</span> = [<span class="title">code</span> <span class="title">to</span> <span class="title">compute</span> <span class="title">XXX</span>];</div><div class="line">gradient(<span class="number">1</span>) = [code <span class="keyword">to</span> compute XXX];</div><div class="line">gradient(<span class="number">2</span>) = [code <span class="keyword">to</span> compute XXX];</div><div class="line">gradient(<span class="number">3</span>) = [code <span class="keyword">to</span> compute XXX];</div><div class="line">...</div><div class="line">gradient(n+<span class="number">1</span>) = [code <span class="keyword">to</span> compute XXX];</div></pre></td></tr></table></figure>
+<p>在计算$J(\theta)$的显然是改变的，需要加上添加的量。<br>在计算gradient(1)的时候，不需要改变，因为gradient(1)对应的是$&#123;\theta&#125;_0$<br>在计算之后的gradient时，也需要相对应的改变式子<br>其它代码均与之前的相同</p>
+
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d81ff4fc458aba1722010bdb220f0103";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]--><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>
