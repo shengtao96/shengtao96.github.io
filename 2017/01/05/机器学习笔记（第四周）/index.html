@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      机器学习笔记（第四周） | 鲭鱼香菜的博客 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="shengtao96">
+    
+    
+
+    <meta name="description" content="1、Neural Network 神经网络1-1、Motivation 学习目的1-1-1、Non-linear-Hypotheses 非线性假设虽然我们学习了线性回归和逻辑回归，但是还是有一些问题我们无法使用这两种学习算法解决。比如，对于分类器显然是非线性的分类问题，如果特征量过多的话，那么很显然我们无法使用多项式回归的方式来构造假设函数。因为不妨设特征数一共是n个，那么二次项将会多达$n^2$">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习笔记（第四周） | 鲭鱼香菜的博客">
+<meta property="og:url" content="http://shengtao96.github.io/2017/01/05/机器学习笔记（第四周）/index.html">
+<meta property="og:site_name" content="鲭鱼香菜的博客">
+<meta property="og:description" content="1、Neural Network 神经网络1-1、Motivation 学习目的1-1-1、Non-linear-Hypotheses 非线性假设虽然我们学习了线性回归和逻辑回归，但是还是有一些问题我们无法使用这两种学习算法解决。比如，对于分类器显然是非线性的分类问题，如果特征量过多的话，那么很显然我们无法使用多项式回归的方式来构造假设函数。因为不妨设特征数一共是n个，那么二次项将会多达$n^2$">
+<meta property="og:updated_time" content="2017-01-05T06:25:06.731Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习笔记（第四周） | 鲭鱼香菜的博客">
+<meta name="twitter:description" content="1、Neural Network 神经网络1-1、Motivation 学习目的1-1-1、Non-linear-Hypotheses 非线性假设虽然我们学习了线性回归和逻辑回归，但是还是有一些问题我们无法使用这两种学习算法解决。比如，对于分类器显然是非线性的分类问题，如果特征量过多的话，那么很显然我们无法使用多项式回归的方式来构造假设函数。因为不妨设特征数一共是n个，那么二次项将会多达$n^2$">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+<body>
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">鲭鱼香菜的博客</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          亚丝娜是我的
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/shengtao96" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">机器学习笔记（第四周）</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-01-05" class="post-meta__date date">2017-01-05</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/程序猿之路净化一切/">程序猿之路净化一切</a>
+            </font>
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/数学/">数学</a>, <a class="tags-link" href="/tags/机器学习/">机器学习</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h2 id="1、Neural-Network-神经网络"><a href="#1、Neural-Network-神经网络" class="headerlink" title="1、Neural Network 神经网络"></a>1、Neural Network 神经网络</h2><h3 id="1-1、Motivation-学习目的"><a href="#1-1、Motivation-学习目的" class="headerlink" title="1-1、Motivation 学习目的"></a>1-1、Motivation 学习目的</h3><h4 id="1-1-1、Non-linear-Hypotheses-非线性假设"><a href="#1-1-1、Non-linear-Hypotheses-非线性假设" class="headerlink" title="1-1-1、Non-linear-Hypotheses 非线性假设"></a>1-1-1、Non-linear-Hypotheses 非线性假设</h4><p>虽然我们学习了线性回归和逻辑回归，但是还是有一些问题我们无法使用这两种学习算法解决。<br>比如，对于分类器显然是非线性的分类问题，如果特征量过多的话，那么很显然我们无法使用多项式回归的方式来构造假设函数。因为不妨设特征数一共是n个，那么二次项将会多达$n^2$个，三次项将会多达$n^3$个，而且我们很难取舍哪些是重要的项，或者哪些可以舍去。随着特征数的增加，后续的计算量也将以几何倍数增加。<br>因此，只是简单的增加二次项或者三次项的逻辑回归算法，并不是一个解决复杂非线性问题的好办法。</p>
+<h4 id="1-1-2、Neurons-and-the-Brain-神经元与大脑"><a href="#1-1-2、Neurons-and-the-Brain-神经元与大脑" class="headerlink" title="1-1-2、Neurons and the Brain 神经元与大脑"></a>1-1-2、Neurons and the Brain 神经元与大脑</h4><p>Origins: Algorithms that try to mimic the brain.<br>神经网络算法最初的目的是制造能够模拟大脑的机器<br>The “one learning algorithm” hypothesis<br>假设大脑处理所有事情并不需要上千个不同的方法，而是只要一个单一的学习算法<br>神经重接实验表明，听觉皮层连接到眼睛的时候也学会了“看”，证明了大脑使用同一种学习算法可以同时处理光、听、触的信号。</p>
+<h3 id="1-2、Model-Representation-模型表示"><a href="#1-2、Model-Representation-模型表示" class="headerlink" title="1-2、Model Representation 模型表示"></a>1-2、Model Representation 模型表示</h3><p>我们将神经元模拟成一个Logistic unit 逻辑单元，也被称作Sigmoid(logistic)activation function 一个有S型函数或者逻辑函数作为激励函数的人工神经元<br>激励函数只是对类似非线性函数$g(z)$的另一种术语称呼<br>模型的权重其实和模型的参数$\theta$是一样<br>神经网络其实就是这些不同的神经元组成的集合<br>神经网络中的第一层也被称为输入层，最后一层也被称为输出层，中间的层也被称为隐藏层</p>
+<h4 id="Notation"><a href="#Notation" class="headerlink" title="Notation"></a>Notation</h4><p>$a_i^&#123;(j)&#125;$ = “activation” of unit $i$ in layer $j$ 表示第j层的第i个神经元或单元<br>所谓激励是指由一个具体神经元读入计算并输出的值<br>$&#123;\theta&#125;^&#123;(j)&#125;$ = matrix of weights controlling function mapping from layer $j$ to layer $j+1$ 表示一个波矩阵，控制着从一层到下一层的作用<br>if network has $s_j$ units in layer $j$, $s_&#123;j+1&#125;$ units in layer $j+1$, then $&#123;\theta&#125;^&#123;(j)&#125;$ will be of dimension $s_&#123;j+1&#125;*(1+s_j)$</p>
+<h4 id="1-2-1、模型"><a href="#1-2-1、模型" class="headerlink" title="1-2-1、模型"></a>1-2-1、模型</h4><p>这样神经网络的计算就可以表示成<br>$a_1^&#123;(2)&#125;=g(&#123;\theta&#125;_&#123;10&#125;^&#123;(1)&#125;x_0+&#123;\theta&#125;_&#123;11&#125;^&#123;(1)&#125;x_1+&#123;\theta&#125;_&#123;12&#125;^&#123;(1)&#125;x_2+&#123;\theta&#125;_&#123;13&#125;^&#123;(1)&#125;x_3)$<br>$a_2^&#123;(2)&#125;=g(&#123;\theta&#125;_&#123;20&#125;^&#123;(1)&#125;x_0+&#123;\theta&#125;_&#123;21&#125;^&#123;(1)&#125;x_1+&#123;\theta&#125;_&#123;22&#125;^&#123;(1)&#125;x_2+&#123;\theta&#125;_&#123;23&#125;^&#123;(1)&#125;x_3)$<br>$a_3^&#123;(2)&#125;=g(&#123;\theta&#125;_&#123;30&#125;^&#123;(1)&#125;x_0+&#123;\theta&#125;_&#123;31&#125;^&#123;(1)&#125;x_1+&#123;\theta&#125;_&#123;32&#125;^&#123;(1)&#125;x_2+&#123;\theta&#125;_&#123;33&#125;^&#123;(1)&#125;x_3)$<br>$h_&#123;\theta&#125;(x)=g(&#123;\theta&#125;_&#123;10&#125;^&#123;(2)&#125;a_0^&#123;(2)&#125;+&#123;\theta&#125;_&#123;11&#125;^&#123;(2)&#125;a_1^&#123;(2)&#125;+&#123;\theta&#125;_&#123;12&#125;^&#123;(2)&#125;a_2^&#123;(2)&#125;+&#123;\theta&#125;_&#123;13&#125;^&#123;(2)&#125;a_3^&#123;(2)&#125;)$<br>那么为了高效计算，我们将式子向量化<br>$x=<br>\left[<br>\begin&#123;matrix&#125;<br>x_0 \\<br>x_1 \\<br>x_2 \\<br>x_3<br>\end&#123;matrix&#125;<br>\right]<br>$<br>$z^&#123;(2)&#125;=<br>\left[<br>\begin&#123;matrix&#125;<br>z_1^&#123;(2)&#125; \\<br>z_2^&#123;(2)&#125; \\<br>z_3^&#123;(2)&#125;<br>\end&#123;matrix&#125;<br>\right]<br>$<br>那么<br>$z^&#123;(2)&#125;=&#123;\theta&#125;^&#123;(1)&#125;x$<br>$a^&#123;(2)&#125;=g(z^&#123;(2)&#125;)$<br>我们不妨将$x$当作是第一层的激励，那么$a^&#123;(1)&#125;=x$<br>所以式子又可以进一步变成<br>$z^&#123;(2)&#125;=&#123;\theta&#125;^&#123;(1)&#125;a^&#123;(1)&#125;$<br>$a^&#123;(2)&#125;=g(z^&#123;(2)&#125;)$<br>Add $a_0^&#123;(2)&#125;=1$<br>$z^&#123;(3)&#125;=&#123;\theta&#125;^&#123;(2)&#125;a^&#123;(2)&#125;$<br>$h_&#123;\theta&#125;(x)=a^&#123;(3)&#125;=g(z^&#123;(3)&#125;)$<br>这种计算$h_&#123;\theta&#125;(x)$的过程被称为forward propagation 前向传播，这样命名是因为我们从输入层的机激励开始，然后进行前向传播给隐藏层计算隐藏层的激励，然后我们继续前向传播并计算输出层的激励。这个从输入层到隐藏层再到输出层依次计算激励的过程叫做前向传播。</p>
+<h4 id="1-2-2、深入理解为什么神经网络可以解决非线性问题"><a href="#1-2-2、深入理解为什么神经网络可以解决非线性问题" class="headerlink" title="1-2-2、深入理解为什么神经网络可以解决非线性问题"></a>1-2-2、深入理解为什么神经网络可以解决非线性问题</h4><p>从输出层的角度来看，这一逻辑单元的功能和逻辑回归单元相同。神经网络所做的就像逻辑回归，但是它不是使用$x_1,x_2,x_3$作为输入特征，而是使用$a_1,a_2,a_3$作为新的输入特征，而$a_1,a_2,a_3$它们是作为输入的函数来学习的。</p>
+<h4 id="1-2-3、其他网络结构"><a href="#1-2-3、其他网络结构" class="headerlink" title="1-2-3、其他网络结构"></a>1-2-3、其他网络结构</h4><p>神经网络中神经元相连接的方式被称为神经网络的架构<br>架构是指不同的神经元是如何相互连接的</p>
+<h3 id="1-3、Appilcations-应用"><a href="#1-3、Appilcations-应用" class="headerlink" title="1-3、Appilcations 应用"></a>1-3、Appilcations 应用</h3><p>在考虑拟合$x_1$XNOR$x_2$的模型之前，不妨先考虑拟合AND “且运算”的模型<br>$x_1,x_2\in \&#123;0,1\&#125;$<br>$y=x_1$ AND $x_2$<br>那么假设函数可以为$h_&#123;\theta&#125;(x)=g(-30+20x_1+20x_2)$<br>通过真值表，我们很显然可以知道这个假设函数模型实现的是逻辑运算“且”<br>对于多步的逻辑值运算，我们可以建立神经网络来拟合模型<br>将$x_1$ AND $x_2$、(NOT $x_1$) AND (NOT $x_2$)和$x_1$ OR $x_2$这三个模型放在一起，就可以模拟$x_1$ XNOR $x_2$模型<br>给出公式$x_1$ XNOR $x_2=$($x_1$ AND $x_2$) OR [(NOT $x_1$) AND (NOT $x_2$)]</p>
+<h3 id="1-4、Multiclass-Classification-多类别分类"><a href="#1-4、Multiclass-Classification-多类别分类" class="headerlink" title="1-4、Multiclass Classification 多类别分类"></a>1-4、Multiclass Classification 多类别分类</h3><p>处理多类别分类的方法实际上是基于一对多神经网络算法延伸出来的<br>建立一个具有多个输出单元的神经网络，也就是说现在神经网络的输出是一个多维向量。</p>
+
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d81ff4fc458aba1722010bdb220f0103";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]--><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>
