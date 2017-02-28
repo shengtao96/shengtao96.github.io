@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      鲭兜的MAD学习（格式） | 鲭兜的博客 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="shengtao96">
+    
+    
+
+    <meta name="description" content="Chap.4 格式编码Question-04：浅谈视频格式及其编码
+封装容器容器就是一般意义上所理解的视频格式，不如简称为格式。
+AVIAudio Video Interleave 微软于1992年推出的格式，文件体积大。AVI能用的编码极多，建议使用Xvid编码，体积可以小很多。
+Divx和Xvid两种视频编码。两者有很深的历史渊源，Xvid是对Divx的复仇，有兴趣请自行百度。Xvid编码更好">
+<meta property="og:type" content="article">
+<meta property="og:title" content="鲭兜的MAD学习（格式） | 鲭兜的博客">
+<meta property="og:url" content="http://shengtao96.github.io/2017/02/28/鲭兜的MAD学习（格式）/index.html">
+<meta property="og:site_name" content="鲭兜的博客">
+<meta property="og:description" content="Chap.4 格式编码Question-04：浅谈视频格式及其编码
+封装容器容器就是一般意义上所理解的视频格式，不如简称为格式。
+AVIAudio Video Interleave 微软于1992年推出的格式，文件体积大。AVI能用的编码极多，建议使用Xvid编码，体积可以小很多。
+Divx和Xvid两种视频编码。两者有很深的历史渊源，Xvid是对Divx的复仇，有兴趣请自行百度。Xvid编码更好">
+<meta property="og:updated_time" content="2017-02-28T08:19:00.142Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="鲭兜的MAD学习（格式） | 鲭兜的博客">
+<meta name="twitter:description" content="Chap.4 格式编码Question-04：浅谈视频格式及其编码
+封装容器容器就是一般意义上所理解的视频格式，不如简称为格式。
+AVIAudio Video Interleave 微软于1992年推出的格式，文件体积大。AVI能用的编码极多，建议使用Xvid编码，体积可以小很多。
+Divx和Xvid两种视频编码。两者有很深的历史渊源，Xvid是对Divx的复仇，有兴趣请自行百度。Xvid编码更好">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+<body>
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">鲭兜的博客</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          努力に胜る天才无し
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/shengtao96" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">鲭兜的MAD学习（格式）</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-02-28" class="post-meta__date date">2017-02-28</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/伟大的CG之路/">伟大的CG之路</a>
+            </font>
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/MAD/">MAD</a>, <a class="tags-link" href="/tags/科普向/">科普向</a>, <a class="tags-link" href="/tags/视频后期/">视频后期</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h2 id="Chap-4-格式编码"><a href="#Chap-4-格式编码" class="headerlink" title="Chap.4 格式编码"></a>Chap.4 格式编码</h2><p>Question-04：浅谈视频格式及其编码</p>
+<h4 id="封装容器"><a href="#封装容器" class="headerlink" title="封装容器"></a><strong>封装容器</strong></h4><p>容器就是一般意义上所理解的视频格式，不如简称为格式。</p>
+<h4 id="AVI"><a href="#AVI" class="headerlink" title="AVI"></a><strong>AVI</strong></h4><p>Audio Video Interleave 微软于1992年推出的格式，文件体积大。<br>AVI能用的编码极多，建议使用Xvid编码，体积可以小很多。</p>
+<h4 id="Divx和Xvid"><a href="#Divx和Xvid" class="headerlink" title="Divx和Xvid"></a><strong>Divx和Xvid</strong></h4><p>两种视频编码。两者有很深的历史渊源，Xvid是对Divx的复仇，有兴趣请自行百度。Xvid编码更好一些，同样的画质，Xvid编码的体积更小。</p>
+<h4 id="RMVB"><a href="#RMVB" class="headerlink" title="RMVB"></a><strong>RMVB</strong></h4><p>以前，视频多是低码率，RMVB在低码率的表现很好。编码一般是RV40，特点是体积比较小。RMVB格式不利于视频编辑，除非是为了看番而且画质要求不高，否则不考虑RMVB格式。超过720P或者1500码率的视频就尽量不要选择RMVB格式了，画质损失明显。</p>
+<h4 id="RM"><a href="#RM" class="headerlink" title="RM"></a><strong>RM</strong></h4><p>realmedia。RM和RMVB的区别在于VB Vibrate Bitrate 动态码率。RM格式已经被RMVB格式取代，是RM格式的资源一定是老番。</p>
+<h4 id="WMV"><a href="#WMV" class="headerlink" title="WMV"></a><strong>WMV</strong></h4><p>Windows Media Video 微软开发的格式，现在很少用。有很多编码格式，一般用VC-1的编码，体积文件也是比较小的，不过同码率下甚至不及RMVB。这个格式一般只有在下一些不正常内容的A片才会遇到，因为WMV有一个特点就是可以加密，有DRM 数字版权加密。有时候你下完播放时他会向你要许可证，不然不能播，很多人会借此推广自己的网站或者植入病毒。</p>
+<h4 id="MP4"><a href="#MP4" class="headerlink" title="MP4"></a><strong>MP4</strong></h4><p>MPEG-4：Moving Picture Experts Group 4 动态图像专家组，该标准的制定者。MPEG有很多种标准，MP4只是其中的一种，即MPEG-4，是指MPEG标准第四部分。再比如MPEG-1，里面又分了三层，其中第三层是MPEG-1 Audio Layer 3，即我们常用的mp3格式的全称。</p>
+<h4 id="H-264"><a href="#H-264" class="headerlink" title="H.264"></a><strong>H.264</strong></h4><p>MPEG第四标准中的第十部分即MPEG-4 Part 10，也就是H.264。又叫Advanced Video Codec高级视频编码，所以常常被简称为AVC。<br>简单的说，H.264是MP4的一种高清编码。同等条件下，比起其他编码其压缩率、画质、体积等都最为可观，所以这种格式用的非常广泛。<br>虽然是在MP4的条件下出的，但是其他容器也在用这种编码。</p>
+<h4 id="x264"><a href="#x264" class="headerlink" title="x264"></a><strong>x264</strong></h4><p>x264是H.264/MPEG-4 AVC视频编码函数库，是H.264的FourCC。FourCC，four character code，四字符代码，可以理解为该编码的一种算法。<br>————MP4有一种H.264的编码，而H.264又有几种方式，如H264、AVC1、x264等。其中H264是商用的，编码算法不公开，要花钱；x264是开源项目，代码公开。前面提到的Xvid、Divx、RV40都是FourCC，可以理解为某一编码下的一种算法。</p>
+<h4 id="H-264-Profile-amp-Level"><a href="#H-264-Profile-amp-Level" class="headerlink" title="H.264-Profile&amp;Level"></a><strong>H.264-Profile&amp;Level</strong></h4><p>H.264有三种主要的配置：Baseline Profile（基础配置）、Main Profile（主要配置）和High Profile（高级配置）。越往后特性越多，算法越复杂，压缩比越高，同等条件下文件体积越小。所以一般都会选择High Profile，不过很多手机播放器暂时不支持这种编码，很多东西都是Main Profile的。<br>前面讲过的Hi0p就是High 10 Profile。<br>至于Level是码率信息，Level越大，数据量越大，越耗资源。<br>同样的MP4文件，在手机里面放有的不卡有的卡，你就可以看看卡的那个是不是Profile或者Level太高。</p>
+<h4 id="H-265"><a href="#H-265" class="headerlink" title="H.265"></a><strong>H.265</strong></h4><p>又名HEVC，High Efficiency Video Coding 高效视频编码，合体名为HEVC/H.265。比H.264更加厉害，简单的说就是在手机上放1080p的视频都不卡。如果H.265编码普及到网络播放器的话，你在线看4K视频都不是问题</p>
+<h4 id="MKV"><a href="#MKV" class="headerlink" title="MKV"></a><strong>MKV</strong></h4><p>开源组织提出的容器，能封装的东西极其广泛，高品质的x264亦或是DTS都能封装。MKV因为也能用H.264，所以同样用H.264封装的MKV和MP4在视频质量上没有什么区别。MKV可以封入多达16条音轨，当吧音频和字幕封装到一起之后，那些音轨和字幕还能完整提取出来，但是MP4不行。但是MKV无法直接导入视频软件里进行编辑</p>
+<h4 id="MOV"><a href="#MOV" class="headerlink" title="MOV"></a><strong>MOV</strong></h4><p>Quicktime影片格式，最大特点是可以带透明通道。一般不做网络传播用，只做电脑视频剪辑用。导出MOV，记得用H.264，否则体积过大。</p>
+<h4 id="FLV"><a href="#FLV" class="headerlink" title="FLV"></a><strong>FLV</strong></h4><p>Flash Video的简称，随着Flash MX延伸出来的视频格式。在视频网站上下的都是FLV格式。优势就是体积texiao，也能用H.264编码。F4V = FLV + H.264，F4V和FLV后缀是可以互相换的。<br>————若是遇到了缺了什么编码不能播或者是视频因编码出问题，请下载完美解码和K-Lite Mega Codec Pack。<br>————总之，格式的选择，一般来说建议是H.264编码的东西，质量与大小兼顾。</p>
+
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d81ff4fc458aba1722010bdb220f0103";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]--><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>
