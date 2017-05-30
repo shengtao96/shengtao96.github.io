@@ -17,13 +17,13 @@
     
 
     <meta name="description" content="1、简介在数学的数值分析领域中，贝塞尔曲线（Bézier curve）是计算机图形学中相当重要的参数曲线。贝塞尔曲线于1962年，由法国工程师皮埃尔·贝塞尔（Pierre Bézier）所广泛发表，他运用贝塞尔曲线来为汽车的主体进行设计。贝塞尔曲线最初由Paul de Casteljau于1959年运用de Casteljau算法开发，以稳定数值的方法求出贝塞尔曲线。
-2、应用正是因为控制简便却具">
+2、应用正是因为控制简便">
 <meta property="og:type" content="article">
 <meta property="og:title" content="贝塞尔曲线扫盲 | 鲭兜的博客">
 <meta property="og:url" content="http://shengtao96.github.io/2016/12/05/贝塞尔曲线扫盲/index.html">
 <meta property="og:site_name" content="鲭兜的博客">
 <meta property="og:description" content="1、简介在数学的数值分析领域中，贝塞尔曲线（Bézier curve）是计算机图形学中相当重要的参数曲线。贝塞尔曲线于1962年，由法国工程师皮埃尔·贝塞尔（Pierre Bézier）所广泛发表，他运用贝塞尔曲线来为汽车的主体进行设计。贝塞尔曲线最初由Paul de Casteljau于1959年运用de Casteljau算法开发，以稳定数值的方法求出贝塞尔曲线。
-2、应用正是因为控制简便却具">
+2、应用正是因为控制简便">
 <meta property="og:image" content="https://raw.githubusercontent.com/shengtao96/picture/master/11.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/shengtao96/picture/master/12.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/shengtao96/picture/master/13.png">
@@ -36,11 +36,11 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/shengtao96/picture/master/19.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/shengtao96/picture/master/2.gif">
 <meta property="og:image" content="https://raw.githubusercontent.com/shengtao96/picture/master/3.gif">
-<meta property="og:updated_time" content="2017-03-09T12:17:52.405Z">
+<meta property="og:updated_time" content="2017-05-30T02:31:29.071Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="贝塞尔曲线扫盲 | 鲭兜的博客">
 <meta name="twitter:description" content="1、简介在数学的数值分析领域中，贝塞尔曲线（Bézier curve）是计算机图形学中相当重要的参数曲线。贝塞尔曲线于1962年，由法国工程师皮埃尔·贝塞尔（Pierre Bézier）所广泛发表，他运用贝塞尔曲线来为汽车的主体进行设计。贝塞尔曲线最初由Paul de Casteljau于1959年运用de Casteljau算法开发，以稳定数值的方法求出贝塞尔曲线。
-2、应用正是因为控制简便却具">
+2、应用正是因为控制简便">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/shengtao96/picture/master/11.png">
     
     
@@ -240,7 +240,9 @@ classes that you can use:
   </header>
 
   <section id="post-content" class="article-content post">
-    <h2 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h2><p>在数学的数值分析领域中，贝塞尔曲线（Bézier curve）是计算机图形学中相当重要的参数曲线。<br>贝塞尔曲线于1962年，由法国工程师皮埃尔·贝塞尔（Pierre Bézier）所广泛发表，他运用贝塞尔曲线来为汽车的主体进行设计。贝塞尔曲线最初由Paul de Casteljau于1959年运用de Casteljau算法开发，以稳定数值的方法求出贝塞尔曲线。</p>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=479938319&auto=1&height=66"></iframe>
+
+<h2 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h2><p>在数学的数值分析领域中，贝塞尔曲线（Bézier curve）是计算机图形学中相当重要的参数曲线。<br>贝塞尔曲线于1962年，由法国工程师皮埃尔·贝塞尔（Pierre Bézier）所广泛发表，他运用贝塞尔曲线来为汽车的主体进行设计。贝塞尔曲线最初由Paul de Casteljau于1959年运用de Casteljau算法开发，以稳定数值的方法求出贝塞尔曲线。</p>
 <h2 id="2、应用"><a href="#2、应用" class="headerlink" title="2、应用"></a>2、应用</h2><p>正是因为控制简便却具有极强的描述能力，贝塞尔曲线在工业设计领域迅速得到了广泛的应用。不仅如此，在计算机图形学领域，尤其是矢量图形学，贝塞尔曲线也占有重要的地位。今天我们最常见的一些矢量绘图软件，如 Flash、Illustrator、CorelDraw 等，无一例外都提供了绘制贝塞尔曲线的功能。甚至像 Photoshop 这样的位图编辑软件，也把贝塞尔曲线作为仅有的矢量绘制工具（钢笔工具）包含其中。<br>贝塞尔曲线在 web 开发领域同样占有一席之地。CSS3 新增了 transition-timing-function 属性，它的取值就可以设置为一个三次贝塞尔曲线方程。在此之前，也有不少 JavaScript 动画库使用贝塞尔曲线来实现美观逼真的缓动效果。</p>
 <h2 id="3、构建"><a href="#3、构建" class="headerlink" title="3、构建"></a>3、构建</h2><h3 id="3-1、二次曲线"><a href="#3-1、二次曲线" class="headerlink" title="3-1、二次曲线"></a>3-1、二次曲线</h3><p>在平面内任选3个不共线的点，依次用线段连接。<br><img src="https://raw.githubusercontent.com/shengtao96/picture/master/11.png" alt="无法加载图片"><br>在AB线段上任选一点D，计算该点到线段起点A的距离AD，与该线段总长AB的比例。<br><img src="https://raw.githubusercontent.com/shengtao96/picture/master/12.png" alt="无法加载图片"><br>根据上一步得到的比例，从BC线段上找出对应的点E，使得AD：AB = BE：BC。<br><img src="https://raw.githubusercontent.com/shengtao96/picture/master/13.png" alt="无法加载图片"><br>连接这两点DE。<br><img src="https://raw.githubusercontent.com/shengtao96/picture/master/14.png" alt="无法加载图片"><br>从新的线段DE上再次找出相同比例的点F，使得DF：DE = AD：AB = BE：BC。<br><img src="https://raw.githubusercontent.com/shengtao96/picture/master/15.png" alt="无法加载图片"><br>到这里，我们就确定了贝塞尔曲线上的一个点F。接着，让选取的点D在AB线段上从起点A移动到终点B，找出所有的贝塞尔曲线上的点F。所有的点找出来之后，我们也就得到了贝塞尔曲线。<br><img src="https://raw.githubusercontent.com/shengtao96/picture/master/16.png" alt="无法加载图片"><br>整个过程的话，可以看动画。<br><img src="https://raw.githubusercontent.com/shengtao96/picture/master/1.gif" alt="无法加载图片"><br>回过头来看这条贝塞尔曲线，为了确定曲线上的一个点，需要进行两轮取点的操作，因此我们称得到的曲线是二次曲线。</p>
 <h3 id="3-2、三次曲线"><a href="#3-2、三次曲线" class="headerlink" title="3-2、三次曲线"></a>3-2、三次曲线</h3><p>当控制点变到四个的时候，也就是三次曲线的时候。<br><img src="https://raw.githubusercontent.com/shengtao96/picture/master/17.png" alt="无法加载图片"><br>步骤都是相同的，只不过我们每确定一个贝塞尔曲线的点，要进行三轮取点操作。如图，AE：AB = BF：BC = CG：CD = EH：EF = FI：FG = HJ：HI，其中J点就是最终得到的贝塞尔曲线上的一个点。<br><img src="https://raw.githubusercontent.com/shengtao96/picture/master/18.png" alt="无法加载图片"><br>然后在AB线段上从A到B枚举E点，最终得到一个三次贝塞尔曲线。<br><img src="https://raw.githubusercontent.com/shengtao96/picture/master/19.png" alt="无法加载图片"></p>
