@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      Linear Discriminant Analysis | 鲭兜的博客 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="shengtao96">
+    
+    
+
+    <meta name="description" content="LDA（Linear Discriminant Analysis，线性判别分析）是一种常用的数据分析方法。LDA算法的目标也是降维，它在降维的同时保留的是类别的区别信息。
+1、问题当我们使用PCA算法降维的时候，并没有考虑类别标签的因素，属于无监督的。在监督学习中使用PCA算法，往往可能使得分类器更加难以建立。因为PCA算法在降维的时候没有充分的利用标签信息，虽然成功的降维了但是损失了大量的信息。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linear Discriminant Analysis | 鲭兜的博客">
+<meta property="og:url" content="http://shengtao96.github.io/2017/06/20/Linear-Discriminant-Analysis/index.html">
+<meta property="og:site_name" content="鲭兜的博客">
+<meta property="og:description" content="LDA（Linear Discriminant Analysis，线性判别分析）是一种常用的数据分析方法。LDA算法的目标也是降维，它在降维的同时保留的是类别的区别信息。
+1、问题当我们使用PCA算法降维的时候，并没有考虑类别标签的因素，属于无监督的。在监督学习中使用PCA算法，往往可能使得分类器更加难以建立。因为PCA算法在降维的时候没有充分的利用标签信息，虽然成功的降维了但是损失了大量的信息。">
+<meta property="og:image" content="https://raw.githubusercontent.com/shengtao96/picture/master/8.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/shengtao96/picture/master/37.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/shengtao96/picture/master/38.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/shengtao96/picture/master/39.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/shengtao96/picture/master/9.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/shengtao96/picture/master/10.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/shengtao96/picture/master/11.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/shengtao96/picture/master/40.png">
+<meta property="og:updated_time" content="2017-06-20T08:21:17.459Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linear Discriminant Analysis | 鲭兜的博客">
+<meta name="twitter:description" content="LDA（Linear Discriminant Analysis，线性判别分析）是一种常用的数据分析方法。LDA算法的目标也是降维，它在降维的同时保留的是类别的区别信息。
+1、问题当我们使用PCA算法降维的时候，并没有考虑类别标签的因素，属于无监督的。在监督学习中使用PCA算法，往往可能使得分类器更加难以建立。因为PCA算法在降维的时候没有充分的利用标签信息，虽然成功的降维了但是损失了大量的信息。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/shengtao96/picture/master/8.jpg">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+<body>
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">鲭兜的博客</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          努力に胜る天才无し
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/shengtao96" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">Linear Discriminant Analysis</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-06-20" class="post-meta__date date">2017-06-20</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/程序猿之路净化一切/">程序猿之路净化一切</a>
+            </font>
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/数学/">数学</a>, <a class="tags-link" href="/tags/机器学习/">机器学习</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=408532682&auto=1&height=66"></iframe><br>LDA（Linear Discriminant Analysis，线性判别分析）是一种常用的数据分析方法。LDA算法的目标也是降维，它在降维的同时保留的是类别的区别信息。</p>
+<h2 id="1、问题"><a href="#1、问题" class="headerlink" title="1、问题"></a>1、问题</h2><p>当我们使用PCA算法降维的时候，并没有考虑类别标签的因素，属于无监督的。在监督学习中使用PCA算法，往往可能使得分类器更加难以建立。因为PCA算法在降维的时候没有充分的利用标签信息，虽然成功的降维了但是损失了大量的信息。在数据往主成分方向投影后，本来可以建立分类器的数据，很大可能多个类别混在一起，如下图左图：<br><img src="https://raw.githubusercontent.com/shengtao96/picture/master/8.jpg" alt="无法加在图片"></p>
+<h2 id="2、二类情况"><a href="#2、二类情况" class="headerlink" title="2、二类情况"></a>2、二类情况</h2><p>我们先考虑二值分类情况，也就是$y_i=0$或者$y_i=1$。<br>我们先来定义问题：给定特征为$d$维的$N$个样本，按列组成矩阵$X=\begin&#123;bmatrix&#125;x_1 &amp; x_2 &amp;  \dots &amp; x_N\end&#123;bmatrix&#125;$，其中有$N_1$个样本属于类别$\omega_1$，另外$N_2$个样本属于类别$\omega_2$。我们想将$d$维数据降维到<strong>只有一维</strong>，而且又要保证能够“清晰”地分辨投影后的两类数据。<br>我们需要找到这个最佳向量$w$（因为最后降维到一维，所以需要寻找的不是一组基（矩阵）$W$，而是一个$d$维列向量$w$），将原始数据投影到新的方向上$w^Tx_i$，而且最好可以通过一个阈值来分辨这两类数据。如上图右图。<br>我们需要定量的找到这一向量$w$。<br>首先我们寻找每类样本的均值（中心点）<br>$$\mu_i=\dfrac&#123;1&#125;&#123;N_i&#125;\displaystyle\sum_&#123;x_i\in \omega_i&#125;x_i$$<br>而且$x_i$投影到$w$之后的样本的均值为<br>$$\tilde \mu_i=\dfrac&#123;1&#125;&#123;N_i&#125;\displaystyle\sum_&#123;x_i\in\omega_i&#125;w^Tx_i=w^T\mu_i$$<br>由此可知，投影后的均值也就是样本中心点的投影。<br>什么样的向量是最佳向量呢？我们首先发现，能够使投影后的两类样本中心点尽量分离的向量是好的向量，定量表示就是：<br>$$J(w)=|\tilde\mu_1-\tilde\mu_2|=|w^T(\mu_1-\mu_2)|$$<br>$J(w)$越打越好<br>但是只要考虑上面的显然不行，看下图：<br><img src="https://raw.githubusercontent.com/shengtao96/picture/master/37.png" alt="无法加载图片"><br>样本点均匀分布在椭圆里，投影到横轴$x_1$上时能够获得更大的中心点间距$J(w)$，但是由于有重叠，投影到$x_1$不能分离样本点。投影到纵轴$x_2$上，虽然$J(w)$较小，但是能够分离样本点。因此我们还需要考虑样本点之间的方差，方差越大，样本点越难以分离。<br>很当然的，我们使用散列值来度量投影后的分散程度：<br>$$\tilde s_i^2=\displaystyle\sum_&#123;x_i\in\omega_i&#125;(w^Tx_i-\tilde\mu_i)^2$$<br>我们想要投影后的样本点的样子是：不同类别的样本点越分开越好，同类的越聚集越好，也就是均值差越大越好，散列值越小越好。那么，最终的度量公式就是：<br>$$J(w)=\dfrac&#123;|\tilde\mu_1-\tilde\mu_2|^2&#125;&#123;\tilde s_1^2+\tilde s_2^2&#125;$$<br>那么，我们只需要寻找使得$J(w)$最大的$w$即可。<br>先把散列值公式展开得到：<br>$$<br>\begin&#123;array&#125; &#123;l l l&#125;<br>\tilde s_i^2 &amp; = &amp; \displaystyle\sum_&#123;x_i\in\omega_i&#125;(w^Tx_i-\tilde\mu_i)^2 \\\<br>             &amp; = &amp; \displaystyle\sum_&#123;x_i\in\omega_i&#125;(w^Tx_i-w^T\mu_i)^2 \\\<br>             &amp; = &amp; \displaystyle\sum_&#123;x_i\in\omega_i&#125;w^T(x_i-\mu_i)(x_i-\mu_i)^Tw<br>\end&#123;array&#125;<br>$$<br>我们定义上式中间的部分$S_i=\displaystyle\sum_&#123;x_i\in\omega_i&#125;(x_i-\mu_i)(x_i-\mu_i)^T$<br>这个矩阵就是没除样本数的协方差矩阵，被称为散列矩阵（scatter matrix）。<br>我们继续定义<br>$$S_w=S_1+S_2$$<br>$S_w$被称为<strong>Within</strong>-class scatter matrix。<br>回到之前的公式，用新定义的符号代替原式子得<br>$$\tilde s_i^2=w^TS_iw$$<br>$$\tilde s_1^2+\tilde s_2^2=w^TS_ww$$<br>然后，展开分子<br>$$<br>\begin&#123;array&#125; &#123;l l l&#125;<br>(\tilde\mu_1-\tilde\mu_2)^2 &amp; = &amp; (w^T\mu_1-w^T\mu_2)^2 \\\<br>                            &amp; = &amp; w^T(\mu_1-\mu_2)(\mu_1-\mu_2)^Tw \\\<br>                            &amp; = &amp; w^TS_Bw<br>\end&#123;array&#125;<br>$$<br>$S_B$被称为<strong>Between</strong>-class scatter matrix，是两个向量的外积，虽然是个矩阵，但是秩为1。<br>那么$J(w)$最终可以表示为<br>$$J(w)=\dfrac&#123;w^TS_Bw&#125;&#123;w^TS_ww&#125;$$<br>在我们求导之前，我们需要对分母进行归一化，因为不做归一化的话，$w$扩大任何倍，都是成立的。为了确定某一个$w$值，我们人为定义$||w^TS_ww||=1$。那么，使用拉格朗日乘子法之后，得到：<br>$$<br>\begin&#123;array&#125; &#123;l l l&#125;<br>c(w) &amp; = &amp; w^TS_Bw-\lambda(w^TS_ww-1) \\\<br>\Rightarrow \dfrac&#123;dc(w)&#125;&#123;dw&#125; &amp; = &amp; 2S_Bw - 2\lambda S_ww = 0 \\\<br>\Rightarrow S_Bw &amp; = &amp; \lambda S_ww<br>\end&#123;array&#125;<br>$$<br>其中用到了矩阵微积分，求导时可以简单的把$w^TS_ww$当成$S_ww^2$看待。<br>如果$S_w$可逆的话，那么将求导的结果两边同时乘以$S_w^&#123;-1&#125;$得到：<br>$$S_w^&#123;-1&#125;S_Bw=\lambda w$$<br>那么$w$就是矩阵$S_w^&#123;-1&#125;S_B$的特征向量。<br>这个公式就是<strong>Fisher linear discrimination</strong><br>我们再观察一下，发现：<br>$$<br>\begin&#123;array&#125; &#123;l l l&#125;<br>S_Bw &amp; = &amp; (\mu_1-\mu_2)(\mu_1-\mu_2)^Tw \\\<br>     &amp; = &amp; \lambda_w(\mu_1-\mu_2)<br>\end&#123;array&#125;<br>$$<br>代入最后的特征值公式得到<br>$$S_w^&#123;-1&#125;S_Bw=\lambda_w\times S_w^&#123;-1&#125;(\mu_1-\mu_2)=\lambda w$$<br>由于对$w$扩大缩小多少倍都不会影响结果，因此可以约去两边的未知常数$\lambda$和$\lambda_w$，得到：<br>$$w=S_w^&#123;-1&#125;(\mu_1-\mu_2)$$<br>因此，我们只需要求出原始样本的均值和方差就可以求出最佳向量$w$，这就是Fisher于1936年提出的<strong>线性判别分析</strong>。<br><img src="https://raw.githubusercontent.com/shengtao96/picture/master/38.png" alt="无法加载图片"></p>
+<h2 id="3、多类情况"><a href="#3、多类情况" class="headerlink" title="3、多类情况"></a>3、多类情况</h2><p>前面是针对只有两个类别的情况，假设类别变成了多个了，要怎么改变，才能保证投影后不同类别能够分离呢？<br>我们之前讨论的是如何将$d$维降到一维，现在类别多了，一维可能已经不能满足要求了。假设我们有$C$个类别，需要$K$维向量（也可以叫基向量）来做投影。<br>将这$K$维向量表示为$W=\begin&#123;bmatrix&#125; w_1 &amp; w_2 &amp; \dots &amp; w_K \end&#123;bmatrix&#125;$。<br>我们将样本点在这$K$维向量投影后的结果表示为$W^Tx$。<br>为了像上一节一样定量度量$J(W)$，我们打算仍然从类间散列度和类内散列度来考虑。<br>当样本是二维的时候，我们从几何意义上考虑：<br><img src="https://raw.githubusercontent.com/shengtao96/picture/master/39.png" alt="无法加载图片"><br>其中$\mu_i$和$S_w$与上节的意义一样，$S_&#123;w1&#125;$是类别1里面的样本点相对于该类点中心$\mu_i$的散列程度。$S_&#123;B1&#125;$变成类别1中心点相对于样本中心点$\mu$的协方差矩阵，即类1相对于$\mu$的散列程度。<br>$$S_w=\displaystyle\sum_&#123;i=1&#125;^CS_&#123;wi&#125;$$<br>$S_&#123;wi&#125;$的计算公式不变，仍然类似于类内部样本点的协方差矩阵。<br>$$S_&#123;wi&#125;=\displaystyle\sum_&#123;x\in \omega_i&#125;(x-\mu_i)(x-\mu_i)^T$$<br>$S_B$需要改变，原来度量的是两个均值点的散列情况，现在度量的是每类均值点相对于样本中心的散列情况。类似于将$\mu_i$看作样本点、$\mu$是均值的协方差矩阵。如果某类里面的样本点较多，那么其权重稍大，权重用$\dfrac&#123;N_i&#125;&#123;N&#125;$表示，但是由于$J(W)$对倍数不敏感，因此使用$N_i$。<br>$$S_B=\displaystyle\sum_&#123;i=1&#125;^CN_i(\mu_i-\mu)(\mu_i-\mu)^T$$<br>其中$\mu=\frac&#123;1&#125;&#123;N&#125;\displaystyle\sum_&#123;\forall x&#125;x=\frac&#123;1&#125;&#123;N&#125;\displaystyle\sum_&#123;x\in\omega_i&#125;N_i\mu_i$是所有样本的均值。<br>上面讨论的都是在投影前的公式变化，但真正的$J(W)$的分子分母都是在投影后计算的。下面我们看样本点投影后的公式变化：<br>第$i$类样本点在某基向量上投影后的均值计算公式：<br>$$\tilde\mu_i=\frac&#123;1&#125;&#123;N_i&#125;\displaystyle\sum_&#123;x\in\omega_i&#125;W^Tx=W^T\frac&#123;1&#125;&#123;N_i&#125;\displaystyle\sum_&#123;x\in\omega_i&#125;x=W^T\mu_i$$<br>$$\tilde\mu=\frac&#123;1&#125;&#123;N&#125;\displaystyle\sum_&#123;\forall x&#125;W^Tx=W^T\frac&#123;1&#125;&#123;N&#125;\displaystyle\sum_&#123;\forall x&#125;x=W^T\mu$$<br>下面两个是在某基向量上投影后的$S_w$和$S_B$：<br>$$\begin&#123;array&#125; &#123;l l l&#125;<br>\tilde&#123;S_w&#125; &amp; = &amp; \displaystyle\sum_&#123;i=1&#125;^C\displaystyle\sum_&#123;x\in\omega_i&#125;(W^Tx-\tilde\mu_i)(W^Tx-\tilde\mu_i)^T \\\<br>            &amp; = &amp; \displaystyle\sum_&#123;i=1&#125;^C\displaystyle\sum_&#123;x\in\omega_i&#125;W^T(x-\mu_i)(x-\mu_i)^TW \\\<br>            &amp; = &amp; W^T\left(\displaystyle\sum_&#123;i=1&#125;^C\displaystyle\sum_&#123;x\in\omega_i&#125;(x-\mu_i)(x-\mu_i)^T\right)W \\\<br>            &amp; = &amp; W^TS_wW<br>\end&#123;array&#125;<br>$$<br>$$<br>\begin&#123;array&#125; &#123;l l l&#125;<br>\tilde&#123;S_B&#125; &amp; = &amp; \displaystyle\sum_&#123;i=1&#125;^C(\tilde\mu_i-\tilde\mu)(\tilde\mu_i-\tilde\mu)^T \\\<br>            &amp; = &amp; \displaystyle\sum_&#123;i=1&#125;^C(W^T\mu_i-W^T\mu)(W^T\mu_i-W^T\mu)^T \\\<br>            &amp; = &amp; W^T\left(\displaystyle\sum_&#123;i=1&#125;^C(\mu_i-\mu)(\mu_i-\mu)^T\right)W \\\<br>            &amp; = &amp; W^TS_BW<br>\end&#123;array&#125;<br>$$<br>回想我们上节的公式$J(W)$，分子是两类中心距，分母是每个类自己的散列度。现在投影方向是多维了，分子需要做出一些变化，我们不是求两两样本中心距之和（这个对描述类别间的分散程度没有任何用处），而是求每类中心相对于全样本中心的散列度之和。<br>因此，最后的$J(W)$的形式是<br>$$J(W)=\dfrac&#123;|\tilde&#123;S_B&#125;|&#125;&#123;|\tilde&#123;S_w&#125;|&#125;=\dfrac&#123;|W^TS_BW|&#125;&#123;|W^TS_wW|&#125;$$<br>整个问题又回归到求$J(W)$的最大值了，我们固定分母为1，然后求导，得到最后结果（这里不要以为形式差不多所以结果一定和上节一样，虽然确实是一样的，但是这里$w$从一个列向量变成了一个矩阵$W$。我们可以用拆分的思想来理解，如果矩阵的一个列向量满足某个等式，那么把这个矩阵拆成若干个列向量仍然满足这个等式，我们把最后的等式相加，重新将列向量组成矩阵，很显然这是合理的）：<br>$$S_Bw_i=\lambda S_ww_i$$<br>$$&#123;S_w&#125;^&#123;-1&#125;S_Bw_i=\lambda w_i$$<br>与上节得出的结论一样！<br>最后还是归结到求矩阵的特征值上来了。首先求出$S_w^&#123;-1&#125;S_B$的特征值，然后取前$K$个特征向量组成$W$矩阵即可。<br><strong>注意</strong><br>由于$S_B$中$(\mu_i-\mu)$秩为1，因此$S_B$的秩至多为$C$（矩阵的秩小于等于各个相加矩阵的秩的和）。由于知道了前$C-1$个$\mu_i$后，最后一个$\mu_i$可以由前面的$\mu_i$来线性表示，因此$S_B$的秩至多为$C-1$，证明如下：<br>$$<br>\begin&#123;array&#125; &#123;l l l&#125;<br>\displaystyle\sum_&#123;i=1&#125;^CN_i(\mu_i-\mu) &amp; = &amp; \displaystyle\sum_&#123;i=1&#125;^CN_i\mu_i-\left(\displaystyle\sum_&#123;i=1&#125;^CN_i\right)\mu \\\<br>                                        &amp; = &amp; \displaystyle\sum_&#123;i=1&#125;^C\displaystyle\sum_&#123;x\in\omega_i&#125;x-\displaystyle\sum_&#123;\forall x&#125;x \\\<br>                                        &amp; = &amp; 0<br>\end&#123;array&#125;<br>$$<br>特征值大的对应的特征向量分割性能最好。<br>由于$S_w^&#123;-1&#125;S_B$不一定可逆，因此得到的$K$个特征向量不一定正交，这也是与PCA不同的地方。</p>
+<h2 id="4、实例"><a href="#4、实例" class="headerlink" title="4、实例"></a>4、实例</h2><p>将三维空间的球体样本点投影到二维平面上，$w_1$比$w_2$能够获得更好的分离效果。<br><img src="https://raw.githubusercontent.com/shengtao96/picture/master/9.jpg" alt="无法加载图片"><br>PCA与LDA的降维比较：<br><img src="https://raw.githubusercontent.com/shengtao96/picture/master/10.jpg" alt="无法加载图片"><br>PCA选择样本点投影具有最大方差方向，LDA选择分类性能最好的方向。</p>
+<h2 id="5、使用LDA的一些限制"><a href="#5、使用LDA的一些限制" class="headerlink" title="5、使用LDA的一些限制"></a>5、使用LDA的一些限制</h2><h3 id="5-1、LDA至多可生成-C-1-维子空间"><a href="#5-1、LDA至多可生成-C-1-维子空间" class="headerlink" title="5-1、LDA至多可生成$C-1$维子空间"></a>5-1、LDA至多可生成$C-1$维子空间</h3><p>LDA降维后的维度区间是$[1,C-1]$，与原始特征数$d$无关，对于二值分类，最多投影到一维。</p>
+<h3 id="5-2、LDA不适合对非高斯分布样本进行降维"><a href="#5-2、LDA不适合对非高斯分布样本进行降维" class="headerlink" title="5-2、LDA不适合对非高斯分布样本进行降维"></a>5-2、LDA不适合对非高斯分布样本进行降维</h3><p><img src="https://raw.githubusercontent.com/shengtao96/picture/master/11.jpg" alt="无法加载图片"><br>上图红色区域表示一类样本，蓝色区域表示一类样本，由于是两类，所以最多投影到一维上。不管在直线上怎么投影，都难以使红色点和蓝色点类内凝聚、类间分离。</p>
+<h3 id="5-3、LDA在样本分类信息依赖方差而不是均值时，效果不好"><a href="#5-3、LDA在样本分类信息依赖方差而不是均值时，效果不好" class="headerlink" title="5-3、LDA在样本分类信息依赖方差而不是均值时，效果不好"></a>5-3、LDA在样本分类信息依赖方差而不是均值时，效果不好</h3><p><img src="https://raw.githubusercontent.com/shengtao96/picture/master/40.png" alt="无法加载图片"><br>上图中，样本点依靠方差信息进行分类，而不是均值信息。LDA不能够进行有效分类，因为LDA过度依靠均值信息。</p>
+<h3 id="5-4、LDA可能过度拟合数据"><a href="#5-4、LDA可能过度拟合数据" class="headerlink" title="5-4、LDA可能过度拟合数据"></a>5-4、LDA可能过度拟合数据</h3><h2 id="6、LDA的变种"><a href="#6、LDA的变种" class="headerlink" title="6、LDA的变种"></a>6、LDA的变种</h2><h3 id="6-1、非参数LDA"><a href="#6-1、非参数LDA" class="headerlink" title="6-1、非参数LDA"></a>6-1、非参数LDA</h3><p>非参数LDA使用本地信息和$K$临近样本点来计算$S_B$，使得$S_B$是全秩的，这样我们可以抽取多余$C-1$个特征向量。而且投影后分离效果更好。</p>
+<h3 id="6-2、正交LDA"><a href="#6-2、正交LDA" class="headerlink" title="6-2、正交LDA"></a>6-2、正交LDA</h3><p>先找到最佳的特征向量，然后找到与这个特征向量正交且最大化Fisher条件的向量。这种方法也能摆脱$C-1$的限制。</p>
+<h3 id="6-3、一般化LDA"><a href="#6-3、一般化LDA" class="headerlink" title="6-3、一般化LDA"></a>6-3、一般化LDA</h3><p>引入了贝叶斯风险等理论。</p>
+<h3 id="6-4、核函数LDA"><a href="#6-4、核函数LDA" class="headerlink" title="6-4、核函数LDA"></a>6-4、核函数LDA</h3><p>将特征$x\rightarrow\Phi(x)$，使用核函数来计算。</p>
+<h2 id="7、一些问题"><a href="#7、一些问题" class="headerlink" title="7、一些问题"></a>7、一些问题</h2><p>上面在多值分类中使用的<br>$$S_B=\displaystyle\sum_&#123;i=1&#125;^CN_i(\mu_i-\mu)(\mu_i-\mu)^T$$<br>是带权重的各类样本中心到全样本中心的散列矩阵。如果$C=2$（也就是二值分类）套用这个公式，不能够得出在二值分类中使用的$S_B$。<br>$$S_B=\displaystyle\sum_&#123;i=1&#125;^C(\mu_1-\mu_2)(\mu_1-\mu_2)^T$$<br>因此二值分类和多值分类求得的$S_B$会不同，而$S_w$意义是一致的。<br>对于二值分类问题，令人惊奇的是<strong>最小二乘法和Fisher线性判别分析是一致的</strong>。<br>下面我们证明这个结论：<br>回想线性回归，给定$N$个$d$维特征的训练样本$X=\begin&#123;bmatrix&#125; x^&#123;(1)&#125; &amp; x^&#123;(2)&#125; &amp; \dots &amp; x^&#123;(N)&#125;\end&#123;bmatrix&#125;$，每个$x^&#123;(i)&#125;$对应一个类标签$y^&#123;(i)&#125;$。我们之前令$y=0$表示一类、$y=1$表示另一类，现在我们为了证明最小二乘法和LDA的关系，我们需要做出一些改变（为了计算方便）：<br>$$<br>\begin&#123;cases&#125;<br>y=\dfrac&#123;N&#125;&#123;N_1&#125;\text&#123;,样例属于有$N_1$个元素的类$C_1$&#125; \\\<br>y=-\dfrac&#123;N&#125;&#123;N_2&#125;\text&#123;,样例属于有$N_2$个元素的类$C_2$&#125;<br>\end&#123;cases&#125;<br>$$<br>就是将值$0/1$做了替换<br>我们列出最小二乘法公式：<br>$$E=\dfrac&#123;1&#125;&#123;2&#125;\displaystyle\sum_&#123;i=1&#125;^N(\theta^Tx^&#123;(i)&#125;+\theta_0-y^&#123;(i)&#125;)^2$$<br>$\theta$和$\theta_0$是参数。<br>将上式对$\theta_0$求导得<br>$$<br>\begin&#123;array&#125; &#123;l l l&#125;<br>\displaystyle\sum_&#123;i=1&#125;^N(\theta^Tx^&#123;(i)&#125;+\theta_0-y^&#123;(i)&#125;) &amp; = &amp; 0 \\\<br>\theta^TN\mu+N\theta_0-\displaystyle\sum_&#123;i=1&#125;^Ny^&#123;(i)&#125; &amp; = &amp; 0 \\\<br>\theta^TN\mu+N\theta_0-\left(N_1\dfrac&#123;N&#125;&#123;N_1&#125;-N_2\dfrac&#123;N&#125;&#123;N_2&#125;\right) &amp; = &amp; 0 \\\<br>\theta_0 &amp; = &amp; -\theta^T\mu<br>\end&#123;array&#125;<br>$$<br>而且$\mu=\frac&#123;1&#125;&#123;N&#125;\displaystyle\sum_&#123;i=1&#125;^Nx^&#123;(i)&#125;=\frac&#123;1&#125;&#123;N&#125;(N_1\mu_1+N_2\mu_2)$<br>然后对$\theta$求导得到<br>$$\displaystyle\sum_&#123;i=1&#125;^N\left(\theta^Tx^&#123;(i)&#125;+\theta_0-y^&#123;(i)&#125;\right)x^&#123;(i)&#125;=0$$<br>我们不妨将$x^&#123;(i)&#125;$转置方便计算而且不影响整个过程，得到：<br>$$<br>\begin&#123;array&#125; &#123;l l l&#125;<br>\displaystyle\sum_&#123;i=1&#125;^N\left(\theta^Tx^&#123;(i)&#125;+\theta_0-y^&#123;(i)&#125;\right)(x^&#123;(i)&#125;)^T &amp; = &amp; 0 \\\<br>\displaystyle\sum_&#123;i=1&#125;^N\theta^Tx^&#123;(i)&#125;(x^&#123;(i)&#125;)^T+\displaystyle\sum_&#123;i=1&#125;^N\theta_0(x^&#123;(i)&#125;)^T-\displaystyle\sum_&#123;i=1&#125;^Ny^&#123;(i)&#125;(x^&#123;(i)&#125;)^T &amp; = &amp; 0 \\\<br>\displaystyle\sum_&#123;i=1&#125;^N\theta^Tx^&#123;(i)&#125;(x^&#123;(i)&#125;)^T-\displaystyle\sum_&#123;i=1&#125;^N\theta^T\mu (x^&#123;(i)&#125;)^T-\left(\dfrac&#123;N&#125;&#123;N_1&#125;N_1\mu_1^T-\dfrac&#123;N&#125;&#123;N_2&#125;N_2\mu_2^T\right) &amp; = &amp; 0 \\\<br>\theta^T\left(\displaystyle\sum_&#123;i=1&#125;^N(x^&#123;(i)&#125;-\mu)(x^&#123;(i)&#125;)^T\right) &amp; = &amp; N(\mu_1^T-\mu_2^T) \\\<br>\theta^T\left(\displaystyle\sum_&#123;i=1&#125;^N(x^&#123;(i)&#125;-\mu)(x^&#123;(i)&#125;-\mu)^T+\displaystyle\sum_&#123;i=1&#125;^N(x^&#123;(i)&#125;-\mu)\mu^T\right) &amp; = &amp; N(\mu_1^T-\mu_2^T) \\\<br>\theta^T\left(S_w+(\displaystyle\sum_&#123;i=1&#125;^Nx^&#123;(i)&#125;-N\mu)\mu^T\right) &amp; = &amp; N(\mu_1^T-\mu_2^T) \\\<br>\theta^TS_w &amp; = &amp; N(\mu_1-\mu_2)^T<br>\end&#123;array&#125;<br>$$<br>然后将等式两边再进行转置操作，结果不会改变：<br>$$S_w\theta=N(\mu_1-\mu_2)$$<br>最后得到的结果仍然是<br>$$\theta=N\times S_w^&#123;-1&#125;(\mu_1-\mu_2)$$<br>这个过程从几何意义上去理解也就是变形后的线性回归（将类标签重新定义），线性回归后的直线方向就是二值分类中LDA求得的直线方向$w$。<br>好了，我们从改变后的$y$的定义可以看出$y&gt;0$属于类$C_1$，$y &lt; 0$属于类$C_2$。因此我们可以选取$y_0=0$作为阈值，即如果$h_\theta(x)=\theta^Tx+\theta_0&gt;0$，就是类$C_1$，否则是类$C_2$。</p>
+
+  </section>
+
+  
+
+<section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'shengtao96'; 
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d81ff4fc458aba1722010bdb220f0103";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]--><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>
