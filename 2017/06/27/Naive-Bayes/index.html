@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      Naive Bayes | 鲭兜的博客 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="shengtao96">
+    
+    
+
+    <meta name="description" content="贝叶斯分类是一类分类算法的总称，这类算法均以贝叶斯定理为基础，故统称为贝叶斯分类。这篇文章先介绍一下贝叶斯分类的基础——贝叶斯定理，然后讨论贝叶斯分类中最简单的一种：朴素贝叶斯分类。这篇文章的目的是记录我学习朴素贝叶斯过程的心得体会，介绍一下贝叶斯定理，文章有问题的地方欢迎指正。
+1、概率基础在开始介绍贝叶斯之前，先简单介绍下概率的基础知识。概率是某一结果出现的可能性的数值表示。例如，抛一枚均质硬">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Naive Bayes | 鲭兜的博客">
+<meta property="og:url" content="http://shengtao96.github.io/2017/06/27/Naive-Bayes/index.html">
+<meta property="og:site_name" content="鲭兜的博客">
+<meta property="og:description" content="贝叶斯分类是一类分类算法的总称，这类算法均以贝叶斯定理为基础，故统称为贝叶斯分类。这篇文章先介绍一下贝叶斯分类的基础——贝叶斯定理，然后讨论贝叶斯分类中最简单的一种：朴素贝叶斯分类。这篇文章的目的是记录我学习朴素贝叶斯过程的心得体会，介绍一下贝叶斯定理，文章有问题的地方欢迎指正。
+1、概率基础在开始介绍贝叶斯之前，先简单介绍下概率的基础知识。概率是某一结果出现的可能性的数值表示。例如，抛一枚均质硬">
+<meta property="og:image" content="https://raw.githubusercontent.com/shengtao96/picture/master/41.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/shengtao96/picture/master/42.png">
+<meta property="og:updated_time" content="2017-06-27T15:47:14.322Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Naive Bayes | 鲭兜的博客">
+<meta name="twitter:description" content="贝叶斯分类是一类分类算法的总称，这类算法均以贝叶斯定理为基础，故统称为贝叶斯分类。这篇文章先介绍一下贝叶斯分类的基础——贝叶斯定理，然后讨论贝叶斯分类中最简单的一种：朴素贝叶斯分类。这篇文章的目的是记录我学习朴素贝叶斯过程的心得体会，介绍一下贝叶斯定理，文章有问题的地方欢迎指正。
+1、概率基础在开始介绍贝叶斯之前，先简单介绍下概率的基础知识。概率是某一结果出现的可能性的数值表示。例如，抛一枚均质硬">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/shengtao96/picture/master/41.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+<body>
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">鲭兜的博客</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          努力に胜る天才无し
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/shengtao96" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">Naive Bayes</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-06-27" class="post-meta__date date">2017-06-27</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/程序猿之路净化一切/">程序猿之路净化一切</a>
+            </font>
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/数学/">数学</a>, <a class="tags-link" href="/tags/机器学习/">机器学习</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=26128897&auto=1&height=66"></iframe><br>贝叶斯分类是一类分类算法的总称，这类算法均以贝叶斯定理为基础，故统称为贝叶斯分类。这篇文章先介绍一下贝叶斯分类的基础——贝叶斯定理，然后讨论贝叶斯分类中最简单的一种：朴素贝叶斯分类。<br>这篇文章的目的是记录我学习朴素贝叶斯过程的心得体会，介绍一下贝叶斯定理，文章有问题的地方欢迎指正。</p>
+<h2 id="1、概率基础"><a href="#1、概率基础" class="headerlink" title="1、概率基础"></a>1、概率基础</h2><p>在开始介绍贝叶斯之前，先简单介绍下概率的基础知识。概率是某一结果出现的可能性的数值表示。例如，抛一枚均质硬币，正面朝上的可能性多大？$0.5$！概率值是一个$0$~$1$之间的浮点数，用来定量地衡量一个事件发生的可能性的大小。概率值越接近$1$，事件发生的可能性越大；概率值越接近$0$，事件越不可能发生。我们日常生活中听到最多的概率是天气预报的降水概率。概率的一种表示方法叫维恩图。下面通过维恩图来说明贝叶斯公式中常见的几个概率：<br><img src="https://raw.githubusercontent.com/shengtao96/picture/master/41.png" alt="无法加载图片"><br>在维恩图中：<br>　　$S$：是样本空间，是所有可能事件的总和。<br>　　$P(A)$：是样本空间$S$中事件$A$发生的概率，维恩图中绿色的部分。<br>　　$P(B)$：是样本空间$S$中事件$B$发生的概率，维恩图中蓝色的部分。<br>　　$P(A\cap B)$：是样本空间$S$中事件$A$和事件$B$同时发生的概率，也就是$A$和$B$相交的部分。<br>　　$P(A|B)$：是条件概率，是事件$B$已经发生时事件$A$发生的概率。<br>对于条件概率，还有一种更清晰的表示方法叫概率树。下面的概率树表示了条件概率$P(A|B)$。与维恩图中的$P(A\cap B)$相比，可以发现两者明显的区别。$P(A\cap B)$是事件$A$和事件$B$同时发生的情况，因此是两者相交区域的概率。而事件概率$P(A|B)$是事件$B$发生时事件$A$发生的概率。这里有一个先决条件就是$P(B)$要首先发生。<br><img src="https://raw.githubusercontent.com/shengtao96/picture/master/42.png" alt="无法加载图片"><br>因为条件概率$P(A|B)$是在事件$B$已经发生的情况下，事件$A$发生的概率，所以$P(A|B)$可以表示为事件$A$与$B$的交集与事件$B$的比值。<br>$$P(A|B)=\dfrac&#123;P(A\cap B)&#125;&#123;P(B)&#125;$$<br>该公式还可以转换一下形式，以便我们下面进行贝叶斯公式计算时使用。<br>$$P(A\cap B)=P(A|B)\times P(B)$$</p>
+<h2 id="2、贝叶斯公式"><a href="#2、贝叶斯公式" class="headerlink" title="2、贝叶斯公式"></a>2、贝叶斯公式</h2><p>贝叶斯公式通过已知的$P(A|B)$，$P(A)$和$P(B)$三个概率计算$P(B|A)$发生的概率。通过前面的概率树及$P(A|B)$的概率可知，$P(B|A)$的概率是在事件$A$发生的前提下事件$B$发生的概率，因此$P(B|A)$可以表示为事件$B$与事件$A$的交集与事件$B$的比值。<br>$$P(B|A)=\dfrac&#123;P(B\cap A)&#125;&#123;P(A)&#125;$$<br>该公式同样可以转化为以下形式：<br>$$P(B\cap A)=P(B|A)\times P(A)$$<br>根据上一节得到的结论，很显然的得<strong>贝叶斯公式</strong>：<br>$$P(B|A)=\dfrac&#123;P(A|B)P(B)&#125;&#123;P(A)&#125;$$</p>
+<h2 id="3、贝叶斯推断"><a href="#3、贝叶斯推断" class="headerlink" title="3、贝叶斯推断"></a>3、贝叶斯推断</h2><p>在贝叶斯公式中，每一种概率都有一个特定的名字：<br>　　$P(B)$是“先验概率”（Prior Probability）<br>　　$P(A)$是“先验概率”（Prior Probability），也叫做标准化常量（Normalized constant）<br>　　$P(A|B)$是已知$B$发生后$A$的条件概率，叫做似然函数（likelihood）<br>　　$P(B|A)$是已知$A$发生后$B$的条件概率，是我们要求的值，叫做后验概率<br>　　$P(A|B)/P(A)$是调整因子，也被称作标准似然度（Stand<br>    ardised likelihood）<br>$$P(B|A)=P(B)\times\dfrac&#123;P(A|B)&#125;&#123;P(A)&#125;$$<br>贝叶斯推断中有几个关键的概念需要说明下：<br>第一个是<strong>先验概率</strong>，先验概率是指我们主观通过事件发生次数对概率的估计。<br>第二个是<strong>似然函数</strong>，似然函数是对某事件发生可能性的判断，与条件概率正好相反。通过事件已经发生的情况推算事件可能性的概率。</p>
+<blockquote>
+<p><strong>对比似然函数与概率</strong><br><strong>概率</strong>：给定某一参数值，求某一结果的可能性。<br>例如，抛一枚均质硬币，抛10次，6次正面向上的可能性是多大？<br><strong>似然函数</strong>：给定某一结果，求某一参数值的可能性。<br>例如，抛一枚硬币，抛10次，结果6次正面向上，其是均质的可能性多大？</p>
+</blockquote>
+<p>第三个是<strong>调整因子</strong>，调整因子是似然函数与先验概率的比值，这个比值相当于一个权值，用来调整后验概率的值，使后验概率更接近真实概率。</p>
+<p>因此，贝叶斯推断可以理解为通过先验概率和调整因子来获得后验概率。其中调整因子是根据事件已经发生的情况下推断事件可能发生的概率（通过硬币正面出现的次数来推断硬币均匀的可能性），并与已经发生的先验概率（硬币正面出现的概率）的比值。通过这个比值调整先验概率来获得后验概率。<br>$$后验概率=先验概率\times调整因子$$</p>
+<h2 id="4、朴素思想"><a href="#4、朴素思想" class="headerlink" title="4、朴素思想"></a>4、朴素思想</h2><p>朴素贝叶斯的思想基础是这样的：对于给出的待分类样本，求解在此样本特征条件下属于各个类别的概率，哪个最大，就认为此待分类样本属于哪个类别。<br>通俗来说，就好比这么个道理，你在街上看到一个黑人，我问你你猜这哥们哪来的，你十有八九猜非洲。为什么？因为黑人中非洲人的比率最高，当然人家也可能是美洲人或亚洲人，但在没有其它可用信息下，我们会选择条件概率最大的类别，这就是朴素贝叶斯的思想基础。<br>在朴素贝叶斯应用的问题中，每个样本$x$可由特征值的合取来描述，而分类器$f(x)$从某有限集合$\omega$中取值。分类器被提供一个已经分好类别的训练集，以及待分类样本$&lt; a_1,a_2,\dots,a_n &gt;$，然后要求预测待分类样本的类别。</p>
+<p>贝叶斯分类器的任务就是在给定样本的特征值$&lt; a_1,a_2,\dots,a_n &gt;$下，得到最可能的类别$\omega_&#123;MAP&#125;$。<br>$$\omega_&#123;MAP&#125;=\arg_&#123;\omega_i\in\omega&#125;\max P(\omega_i|a_1,a_2,\dots,a_n)$$<br>可以使用贝叶斯公式将此表达式重写为：<br>$$\omega_&#123;MAP&#125;=\arg_&#123;\omega_i\in\omega&#125;\max\dfrac&#123;P(a_1,a_2,\dots,a_n|\omega_i)P(\omega_i)&#125;&#123;P(a_1,a_2,\dots,a_n)&#125;=\arg_&#123;\omega_i\in\omega&#125;\max P(a_1,a_2,\dots,a_n|\omega_i)P(\omega_i)$$<br>那么我们需要做的就是估计出，基于训练数据的上式的每个类别项的值，比较大小。估计$P(\omega_i)$很容易，只要计算每个类别$\omega_i$出现在训练数据中的频率即可。<br>然而用同样的方法估计$P(a_1,a_2,\dots,a_n|\omega_i)$项是不可能的。问题在于这些项的数量等于可能样本的数量乘以可能类别的数量。因此，为获得合理估计，样本空间中的每个样本必须出现足够多次。</p>
+<p>为了解决这个问题，朴素贝叶斯分类器基于一个简单的假定：在给定类别时，特征值之间互相条件独立。<br>换言之，该假定使得在给定样本类别的情况下，$&lt; a_1,a_2,\dots,a_n &gt;$的概率是对每个单独特征的概率的乘积：<br>$$\omega_&#123;NB&#125;=\arg_&#123;\omega_i\in\omega&#125;\max P(\omega_i)\displaystyle\prod_j^n P(a_j|\omega_i)$$<br>其中$\omega_&#123;NB&#125;$表示朴素贝叶斯分类器输出的类别。<br>注意在朴素贝叶斯分类器中，须从训练数据中估计不同$P(a_j|\omega_i)$的数量只是不同的特征值数量乘以不同的类别值数量——这比要估计$P(a_1,a_2,\dots,a_n|\omega_i)$项所需的工程要小得多。</p>
+<h2 id="5、朴素贝叶斯分类"><a href="#5、朴素贝叶斯分类" class="headerlink" title="5、朴素贝叶斯分类"></a>5、朴素贝叶斯分类</h2><p>概括地说，朴素贝叶斯需要估计不同的$P(\omega_i)$和$P(a_j|\omega_i)$项，基于它们在训练数据上的频率。这些估计值对应了待分类样本的假设，然后该假设使用上面式子中的规则来分类新样本。只要所需的条件独立性能够被满足，朴素贝叶斯分类$\omega_&#123;Nb&#125;$等于$\omega_&#123;MAP&#125;$。</p>
+<p>朴素贝叶斯分类的正式定义如下：<br>1、设$x=&lt; a_1,a_2,\dots,a_n &gt;$为一个待分类样本，而每个$a_j$为$x$的一个特征属性<br>2、有类别集合$C=\&#123;y_1,y_2,\dots,y_m\&#125;$。<br>3、估计$P(y_1|x),P(x_2|x),\dots,P(y_m|x)$。<br>4、如果$P(y_k|x)=\max\&#123;P(y_1|x),P(y_2|x),\dots,P(y_m|x)\&#125;$，则$x\in y_k$。<br>那么现在的关键就是如何估计第3步中的各个条件概率。我们可以这么做：<br>1、收集训练样本数据，形成训练集。<br>2、统计得到在各个类别下各个特征属性的条件概率，即$P(a_1|y_1),P(a_2|y_1),\dots,P(a_n|y_1);P(a_1|y_2),P(a_2|y_2),\dots,P(a_n|y_2);\dots;P(a_1|y_m),P(a_2|y_m),\dots,P(a_n|y_m)$。<br>3、假设两两特征之间是条件独立的，则根据贝叶斯公式有：<br>$$P(y_i|x)\propto P(x|y_i)P(y_i)=P(a_1|y_i)P(a_2|y_i)\dots P(a_m|y_i)P(y_i)=P(y_i)\displaystyle\prod_&#123;j=1&#125;^mP(a_j|y_i)$$</p>
+<h2 id="6、特征值连续以及Laplace-Smoothing"><a href="#6、特征值连续以及Laplace-Smoothing" class="headerlink" title="6、特征值连续以及Laplace Smoothing"></a>6、特征值连续以及Laplace Smoothing</h2><p>由上文看出，计算各个类别的条件概率$P(a_j|y_i)$是朴素贝叶斯分类的关键性步骤，当特征属性为离散值时，只要很方便的统计训练集中各个类别中出现的频率即可估计$P(a_j|y_i)$，下面谈谈特征属性是连续值的情况。<br>当特征属性为连续值时，通常假定其服从高斯分布（正态分布），即：<br>$$g(x,\eta,\sigma)=\dfrac&#123;1&#125;&#123;\sqrt&#123;2\pi&#125;\sigma&#125;e^&#123;-\dfrac&#123;(x-\eta)^2&#125;&#123;2\sigma^2&#125;&#125;$$<br>$$P(a_j|y_i)=g(a_j,\eta_&#123;y_i&#125;,\sigma_&#123;y_i&#125;)$$<br>因此只要计算出训练集中各个类别中此特征项划分的各均值和标准差，代入上式即可得到需要的估计值。</p>
+<p>另一个需要讨论的是当$P(a_j|y_i)=0$怎么办。当某个类别下某个特征值没有出现过，会直接导致这种类别的可能性为$0$，这会使分类器质量大大降低。为了解决这个问题，我们使用Laplace Smoothing，做法很简单，对所有$P(a_j|y_i)=0$的估计，分子加+1，分母加上不同的特征值个数。这样只是将数值减小，不会对分类结果产生影响，同时解决了频率为$0$的问题。<br>$$P(a_&#123;jk&#125;|\omega_i)=\dfrac&#123;|a_j=a_&#123;jk&#125;\land\omega=\omega_i|+1&#125;&#123;|\omega=\omega_i|+|a_j|&#125;$$<br>$P(a_&#123;jk&#125;|\omega_i)$表示样本属于类别$\omega_i$的情况下，第$j$个特征值等于$k$的概率大小。<br>$|a_j=a_&#123;jk&#125;\land\omega=\omega_i|$表示训练集中类别为$\omega_i$且第$j$个特征值等于$k$的样本个数。<br>$|\omega=\omega_i|$表示训练集中类别为$\omega_i$的样本个数。<br>$|a_j|$表示训练集中第$j$个特征出现的不同值的个数。</p>
+
+  </section>
+
+  
+
+<section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'shengtao96'; 
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d81ff4fc458aba1722010bdb220f0103";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]--><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>
