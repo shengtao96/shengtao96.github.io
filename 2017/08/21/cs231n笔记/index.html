@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      cs231n笔记 | 鲭兜的博客 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="shengtao96">
+    
+    
+
+    <meta name="description" content="第1课：计算机视觉历史回顾与介绍Convolutional Neural Networks 卷积神经网络multimedia 多媒体biology 生物学psychology 心理学neuroscience 神经科学optics 光学robotics 机器人技术infomation retrieval 信息检索cognitive science 认知科学视觉的前期，并不是对图片整体进行处理。视觉处">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cs231n笔记 | 鲭兜的博客">
+<meta property="og:url" content="http://shengtao96.github.io/2017/08/21/cs231n笔记/index.html">
+<meta property="og:site_name" content="鲭兜的博客">
+<meta property="og:description" content="第1课：计算机视觉历史回顾与介绍Convolutional Neural Networks 卷积神经网络multimedia 多媒体biology 生物学psychology 心理学neuroscience 神经科学optics 光学robotics 机器人技术infomation retrieval 信息检索cognitive science 认知科学视觉的前期，并不是对图片整体进行处理。视觉处">
+<meta property="og:updated_time" content="2017-08-21T06:12:31.991Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cs231n笔记 | 鲭兜的博客">
+<meta name="twitter:description" content="第1课：计算机视觉历史回顾与介绍Convolutional Neural Networks 卷积神经网络multimedia 多媒体biology 生物学psychology 心理学neuroscience 神经科学optics 光学robotics 机器人技术infomation retrieval 信息检索cognitive science 认知科学视觉的前期，并不是对图片整体进行处理。视觉处">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+<body>
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">鲭兜的博客</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          努力に胜る天才无し
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/shengtao96" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">cs231n笔记</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-08-21" class="post-meta__date date">2017-08-21</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/程序猿之路净化一切/">程序猿之路净化一切</a>
+            </font>
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/数学/">数学</a>, <a class="tags-link" href="/tags/机器学习/">机器学习</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h2 id="第1课：计算机视觉历史回顾与介绍"><a href="#第1课：计算机视觉历史回顾与介绍" class="headerlink" title="第1课：计算机视觉历史回顾与介绍"></a>第1课：计算机视觉历史回顾与介绍</h2><p>Convolutional Neural Networks 卷积神经网络<br>multimedia 多媒体<br>biology 生物学<br>psychology 心理学<br>neuroscience 神经科学<br>optics 光学<br>robotics 机器人技术<br>infomation retrieval 信息检索<br>cognitive science 认知科学<br>视觉的前期，并不是对图片整体进行处理。视觉处理流程的第一步，是<strong>对简单形状结构的处理</strong>。<br>视觉是<strong>分层</strong>的。<br>这两个认知共同形成了深度学习架构的基石。<br>Generalized Cylinder的主旨是整个世界都是由简单的形状组成的，世界上所有的实体都只不过是这些形状的组合，然后从不同的视角观察而已。<br>将图片分割成有意义的几部分有重大意义，感知分组（perceptual grouping）是视觉领域最为重要的问题。<br>视觉智能的要求要比物体检测的要求更深远，比如看图说话，通过一副图片写出一篇文章。</p>
+<h2 id="第2课：图像驱动的图像分类方式：K最近邻与线性分类器"><a href="#第2课：图像驱动的图像分类方式：K最近邻与线性分类器" class="headerlink" title="第2课：图像驱动的图像分类方式：K最近邻与线性分类器"></a>第2课：图像驱动的图像分类方式：K最近邻与线性分类器</h2><p>语义鸿沟问题（semantic gap）</p>
+<blockquote>
+<p>The semantic gap characterizes the difference between two descriptions of an object by different linguistic representations, for instance languages or symbols.</p>
+</blockquote>
+<p>图像分类的难点在于，当你想要处理表单中数以百万计的数字，并对其进行分类，是相当复杂的。而且，人的观察角度是可以改变的，可以旋转、缩放、平移、聚焦某点等操作，会让图片样式不同，我们对这些调整都具有鲁棒性（得到的分类应该一致）。<br><strong>图像分类的困难：</strong><br><strong>视角变化（Viepoint Variation）</strong>：同一个物体，摄像机可以从多个角度来展现。<br><strong>大小变化（Scale Variation）</strong>：物体可视的大小通常是会变化的（不仅是在图片中，在真实世界中大小也是变化的）。<br><strong>形变（Deformation）</strong>：很多东西的形状并非一成不变，会有很大变化。<br><strong>遮挡（Occlusion）</strong>：目标物体可能被挡住。有时候只有物体的一小部分（可以小到几个像素）是可见的。<br><strong>光线（Illumination Conditions）</strong>：在像素层面上，光照的影响非常大。<br><strong>背景干扰（Background Clutter）</strong>：物体可能混入背景之中，使之难以被辨认。<br><strong>类内差异（intra-class variation）</strong>：一类物体的个体之间的外形差异很大，比如椅子。这一类物体有许多不同的对象，每个都有自己的外形。</p>
+<p>在图像分类的初期尝试中，我们希望知道某类物体的轮廓特征或者边缘特征，以此在所检测的图片中寻找到相对应的结构特征，来判定这图片是否属于该这类。但是这显然是不可扩展的分类方法。</p>
+<p>Data-driven approach：<br>1、Collect a dataset of images and labels<br><strong>输入</strong>：输入是包含N个图像的集合，每个图像的标签是K种分类标签中的一种。这个集合称为<em>训练集</em>。<br>2、Use Machine Learning to train an image classifier<br><strong>学习</strong>：这一步的任务是使用训练集来学习每个类到底长什么样。一般该步骤叫做<em>训练分类器</em>或者<em>学习一个模型</em>。<br>3、Evaluate the classifier on a withheld set of test images<br><strong>评价</strong>：让分类器来预测它未曾见过的图像的分类标签，并以此来评价分类器的质量。我们会把分类器预测的标签和图像真正的分类标签对比。毫无疑问，分类器预测的分类标签和图像真正的分类标签如果一致，那就是好事，这样的情况越多越好。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(train_images, train_labels)</span>:</span></div><div class="line">    <span class="comment"># build a model for images -&gt; labels...</span></div><div class="line">    <span class="keyword">return</span> model</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(model, test_images)</span>:</span></div><div class="line">    <span class="comment"># predict test_labels using the model...</span></div><div class="line">    <span class="keyword">return</span> test_labels</div></pre></td></tr></table></figure></p>
+<h3 id="Nearest-Neighbor-分类器"><a href="#Nearest-Neighbor-分类器" class="headerlink" title="Nearest Neighbor 分类器"></a>Nearest Neighbor 分类器</h3><p>距离度量：<br>L1 distance 曼哈顿距离: $d_1(I_1,I_2)=\displaystyle\sum_p|I_1^P-I_2^P|$<br>速度取决于训练集的大小，将会线性地减慢速度。</p>
+<blockquote>
+<p>能使近邻算法分类器速度加快的方法近似近邻算法，FLANN库。</p>
+</blockquote>
+<p>L2 distance 欧拉距离：<br>$d_2(I_1,I_2)=\sqrt&#123;\displaystyle\sum_p(I_1^P-I_2^P)^2&#125;$</p>
+<p><strong>L1和L2比较</strong>。比较这两个度量方式是挺有意思的。在面对两个向量之间的差异时，L2比L1更加不能容忍这些差异。也就是说，相对于1个巨大的差异，L2距离更倾向于接受多个中等程度的差异。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">unpickle</span><span class="params">(file)</span>:</span></div><div class="line">    <span class="keyword">import</span> cPickle</div><div class="line">    <span class="keyword">with</span> open(file, <span class="string">'rb'</span>) <span class="keyword">as</span> fr:</div><div class="line">        dict = cPickle.load(fr)</div><div class="line">    <span class="keyword">return</span> dict</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_CIFAR10</span><span class="params">(file)</span>:</span></div><div class="line">    Xtr = array([]); Ytr = array([])</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">6</span>):</div><div class="line">        dict = unpickle(file + <span class="string">"\\\data_batch_"</span> + str(i))</div><div class="line">        <span class="keyword">if</span> len(Xtr) == <span class="number">0</span>:</div><div class="line">            Xtr = dict[<span class="string">'data'</span>]</div><div class="line">            Ytr = dict[<span class="string">'labels'</span>]</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            Xtr = append(Xtr, dict[<span class="string">'data'</span>], axis = <span class="number">0</span>)</div><div class="line">            Ytr = append(Ytr, dict[<span class="string">'labels'</span>], axis = <span class="number">0</span>)</div><div class="line">        <span class="keyword">print</span> <span class="string">"batch_%d is ok"</span> % i</div><div class="line">    dict = unpickle(file + <span class="string">"\\\test_batch"</span>)</div><div class="line">    <span class="keyword">return</span> Xtr, Ytr, dict[<span class="string">'data'</span>], array(dict[<span class="string">'labels'</span>])</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">NearestNeighbor</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">pass</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(self, X, y)</span>:</span></div><div class="line">        self.Xtr = X</div><div class="line">        self.ytr = y</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(self, X)</span>:</span></div><div class="line">        num_test = X.shape[<span class="number">0</span>]</div><div class="line">        Ypred = zeros(num_test, dtype = self.ytr.dtype)</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(num_test):</div><div class="line">            distance = sum(abs(self.Xtr - X[i, :]), axis = <span class="number">1</span>)</div><div class="line"><span class="comment">#            distance = sqrt(sum(((self.Xtr - X[i, :]) ** 2), axis = 1))</span></div><div class="line">            min_index = argmin(distance)</div><div class="line">            Ypred[i] = self.ytr[min_index]</div><div class="line"><span class="comment">#            print "%d in %d" % (i, num_test)</span></div><div class="line">        <span class="keyword">return</span> Ypred</div><div class="line"></div><div class="line"></div><div class="line">Xtr, Ytr, Xte, Yte = load_CIFAR10(<span class="string">"E:\\\cifar-10-batches-py"</span>)</div><div class="line"></div><div class="line"><span class="comment">#Xtr_rows = Xtr.reshape(Xtr.shape[0], 32 * 32 * 3)</span></div><div class="line"><span class="comment">#Xte_rows = Xte.reshape(Xte.shape[0], 32 * 32 * 3)</span></div><div class="line"></div><div class="line">nn = NearestNeighbor()</div><div class="line">nn.train(Xtr, Ytr)</div><div class="line">Yte_predict = nn.predict(Xte)</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">"accuracy: %f"</span> % mean(Yte_predict == Yte)</div></pre></td></tr></table></figure></p>
+<p>距离的选择是一个超参数（hyper parameter）。<br>另一个超参数的选择是K，将近邻算法推广到k近邻算法上。</p>
+<p>超参数的选择与问题本身有关，无法找到对这些超参数恒定的最佳选择。根据某幅图，进行迭代选择，找出最佳值。</p>
+<p>在超参数的选择过程中，特别注意：<strong>决不能使用测试集来进行调优</strong><br>如果你使用测试集来调优，而且算法看起来效果不错，那么真正的危险在于：算法实际部署后，性能可能会远低于预期。这种情况，称之为算法对测试集<strong>过拟合</strong>。</p>
+<blockquote>
+<p>测试数据集只使用一次，即在训练完成后评价最终的模型时使用。</p>
+</blockquote>
+<p>好在我们有不用测试集调优的方法。其思路是：从训练集中取出一部分数据用来调优，我们称之为验证集（validation set）。<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="attr">Xval</span> = Xtr[:<span class="number">1000</span>, :]</div><div class="line"><span class="attr">Yval</span> = Ytr[:<span class="number">1000</span>]</div><div class="line"><span class="attr">Xtr</span> = Xtr[<span class="number">1000</span>:, :]</div><div class="line"><span class="attr">Ytr</span> = Ytr[<span class="number">1000</span>:]</div><div class="line"></div><div class="line"><span class="attr">validation_accuracies</span> = []</div><div class="line">for k <span class="keyword">in</span> [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">20</span>, <span class="number">50</span>, <span class="number">100</span>]:</div><div class="line">    <span class="attr">nn</span> = NearestNeighbor()</div><div class="line">    nn.train(Xtr, Ytr)</div><div class="line"></div><div class="line">    <span class="attr">Yval_predict</span> = nn.predict(Xval, <span class="attr">k</span> = k)</div><div class="line">    <span class="attr">acc</span> = mean(<span class="attr">Yval_predict</span> == Yval)</div><div class="line">    print <span class="string">"accuracy: %f"</span> % acc</div><div class="line"></div><div class="line">    validation_accuracies.append((k, acc))</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>把训练集分成训练集和验证集。使用验证集来对所有超参数调优。最后只在测试集上跑一次并报告结果。</p>
+</blockquote>
+<p><strong>交叉验证</strong>。有时候，训练集数量较小（因此验证集的数量更小），人们会使用一种被称为交叉验证的方法，这种方法更加复杂些。还是用刚才的例子，如果是交叉验证集，我们就不是取1000个图像，而是将训练集平均分成5份，其中4份用来训练，1份用来验证。然后我们循环着取其中4份来训练，其中1份来验证，最后取所有5次验证结果的平均值作为算法验证结果。</p>
+<p>K近邻在图像上几乎不被使用，因为它效率很低，而且它非常不直观。</p>
+<h3 id="线性分类器（Linear-Classifier）"><a href="#线性分类器（Linear-Classifier）" class="headerlink" title="线性分类器（Linear Classifier）"></a>线性分类器（Linear Classifier）</h3><p>$f(x,W)=Wx+b$</p>
+<h2 id="第3课：线性分类器损失函数与最优化"><a href="#第3课：线性分类器损失函数与最优化" class="headerlink" title="第3课：线性分类器损失函数与最优化"></a>第3课：线性分类器损失函数与最优化</h2><p>$f(x,W)=Wx$<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">from numpy import *</div><div class="line"></div><div class="line">def L_i(x, y, W):</div><div class="line">    <span class="built_in">delta</span> = <span class="number">1.0</span></div><div class="line">    scores = W.dot(x)</div><div class="line">    correct_class_score = scores[y]</div><div class="line">    D = W.shape[<span class="number">0</span>]</div><div class="line">    loss_i = <span class="number">0.0</span></div><div class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">xrange</span>(D):</div><div class="line">        <span class="keyword">if</span> j != y:</div><div class="line">            loss_i += <span class="built_in">max</span>(<span class="number">0</span>, scores[j] - correct_class_score = <span class="built_in">delta</span>)</div><div class="line">    <span class="built_in">return</span> loss_i</div><div class="line"></div><div class="line">def L_i_vectorized(x, y, W):</div><div class="line">    <span class="built_in">delta</span> = <span class="number">1.0</span></div><div class="line">    scores = W.dot(x)</div><div class="line">    margins = <span class="built_in">max</span>(<span class="number">0</span>, scores - scores[y] + <span class="built_in">delta</span>)</div><div class="line">    loss_i = <span class="built_in">sum</span>(margins) - <span class="number">1</span></div><div class="line">    <span class="built_in">return</span> loss_i</div></pre></td></tr></table></figure></p>
+<p>max(0,-)函数，它常被称为折叶损失（hinge loss）</p>
+<p>$L=\dfrac&#123;1&#125;&#123;N&#125;\displaystyle\sum_&#123;i=1&#125;^N\displaystyle\sum_&#123;j\ne y_i&#125;\max(0,f(x_j;W)-f(x_&#123;y_i&#125;;W)+1)$<br>上面这个loss function是有问题的。</p>
+<p>按照这种loss function，如果存在一个W使得损失为零，那么这个W是可以以alpha倍数增大的，而且完全符合条件，这使得我们拥有了一个最佳的W空间。</p>
+<p>正则化概念<br>$L=\dfrac&#123;1&#125;&#123;N&#125;\displaystyle\sum_&#123;i=1&#125;^N\displaystyle\sum_&#123;j\ne y_i&#125;\max(0,f(x_j;W)-f(x_&#123;y_i&#125;;W)+1)+\lambda R(W)$<br>正则化是权衡训练损失和泛化损失。</p>
+<p>正则化的常见形式有：<br>$R(W)=\displaystyle\sum_k\sum_l&#123;W_&#123;k,l&#125;&#125;^2$<br>$R(W)=\displaystyle\sum_k\sum_l|W_&#123;k,l&#125;|$<br>$R(W)=\displaystyle\sum_k\sum_l\beta &#123;W_&#123;k,l&#125;&#125;^2+|W_&#123;k,l&#125;|$</p>
+<h3 id="Softmax-Classifier"><a href="#Softmax-Classifier" class="headerlink" title="Softmax Classifier"></a>Softmax Classifier</h3><p>$P(Y=k|X=x_i)=\dfrac&#123;e^&#123;s_k&#125;&#125;&#123;\displaystyle\sum_je^&#123;s_j&#125;&#125;$<br>这就是Softmax Function<br>$L_i=-\log(\dfrac&#123;e^&#123;s_k&#125;&#125;&#123;\displaystyle\sum_je^&#123;s_j&#125;&#125;)+R(W)$</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">from numpy import *</div><div class="line"></div><div class="line">f = array([<span class="number">123</span>, <span class="number">456</span>, <span class="number">789</span>])</div><div class="line">p = exp(<span class="name">f</span>) / sum(<span class="name">exp</span>(<span class="name">f</span>))</div><div class="line"></div><div class="line">f -= max(<span class="name">f</span>)</div><div class="line">p = exp(<span class="name">f</span>) / sum(<span class="name">exp</span>(<span class="name">f</span>))</div></pre></td></tr></table></figure>
+<h3 id="最优化"><a href="#最优化" class="headerlink" title="最优化"></a>最优化</h3><p>1、数值梯度法<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</div><div class="line"></div><div class="line">def eval_numberical_gradient(f, x):</div><div class="line">    fx = f(x)</div><div class="line">    grad = zeros(x.shape)</div><div class="line">    h = <span class="number">0.00001</span></div><div class="line"></div><div class="line">    <span class="literal">it</span> = nditer(x, flags = [<span class="string">'multi_index'</span>], op_flags = [<span class="string">'readwrite'</span>])</div><div class="line">    <span class="keyword">while</span> <span class="keyword">not</span> <span class="literal">it</span>.finished:</div><div class="line"></div><div class="line">        ix = <span class="literal">it</span>.multi_index</div><div class="line">        old_value = x[ix]</div><div class="line">        x[ix] = old_value + h</div><div class="line">        fxh = f(x)</div><div class="line">        x[ix] = old_value</div><div class="line"></div><div class="line">        grad[ix] = (fxh - fx) / h</div><div class="line">        <span class="literal">it</span>.iternext()</div><div class="line"></div><div class="line">    <span class="keyword">return</span> grad</div></pre></td></tr></table></figure></p>
+<p>2、分析梯度法</p>
+<h2 id="第4课：反向传播与神经网络初步"><a href="#第4课：反向传播与神经网络初步" class="headerlink" title="第4课：反向传播与神经网络初步"></a>第4课：反向传播与神经网络初步</h2><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">from numpy <span class="built_in">import</span> *</div><div class="line">from numpy.random <span class="built_in">import</span> randn</div><div class="line"></div><div class="line">N, D_in, H, <span class="attr">D_out</span> = <span class="number">64</span>, <span class="number">1000</span>, <span class="number">100</span>, <span class="number">10</span></div><div class="line">x, <span class="attr">y</span> = randn(N, D_in), randn(N, D_out)</div><div class="line">w1, <span class="attr">w2</span> = randn(D_in, H), randn(H, D_out)</div><div class="line"></div><div class="line">for t <span class="keyword">in</span> range(<span class="number">2000</span>):</div><div class="line">    <span class="attr">h</span> = <span class="number">1</span> / (<span class="number">1</span> + exp(-x.dot(w1)))</div><div class="line">    <span class="attr">y_pred</span> = h.dot(w2)</div><div class="line">    <span class="attr">loss</span> = square(y_pred - y).sum()</div><div class="line">    print(t, loss)</div><div class="line"></div><div class="line">    <span class="attr">grad_y_pred</span> = <span class="number">2.0</span> * (y_pred - y)</div><div class="line">    <span class="attr">grad_w2</span> = h.T.dot(grad_y_pred)</div><div class="line">    <span class="attr">grad_h</span> = grad_y_pred.dot(w2.T)</div><div class="line">    <span class="attr">grad_w1</span> = x.T.dot(grad_h * h * (<span class="number">1</span> - h))</div><div class="line"></div><div class="line">    w1 <span class="attr">-=</span> <span class="number">1</span>e-<span class="number">4</span> * grad_w1</div><div class="line">    w2 <span class="attr">-=</span> <span class="number">1</span>e-<span class="number">4</span> * grad_w2</div></pre></td></tr></table></figure>
+<h2 id="第5课：神经网络训练细节（一）"><a href="#第5课：神经网络训练细节（一）" class="headerlink" title="第5课：神经网络训练细节（一）"></a>第5课：神经网络训练细节（一）</h2><h2 id="第6课：神经网络训练细节（二）"><a href="#第6课：神经网络训练细节（二）" class="headerlink" title="第6课：神经网络训练细节（二）"></a>第6课：神经网络训练细节（二）</h2><h2 id="第7课：卷积神经网络详解"><a href="#第7课：卷积神经网络详解" class="headerlink" title="第7课：卷积神经网络详解"></a>第7课：卷积神经网络详解</h2>
+  </section>
+
+  
+
+<section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'shengtao96'; 
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d81ff4fc458aba1722010bdb220f0103";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]--><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>
